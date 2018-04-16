@@ -9,7 +9,9 @@ import {SocketService} from '../socket.service';
 export class HeaderComponent implements OnInit {
   constructor(private _sensorService: SocketService) {
   }
-
+  data = {
+    command: ''
+  };
   ngOnInit() {
     this._sensorService.emit('Client_asking', {
       msg: 'Client to server, can u hear me server?'
@@ -22,6 +24,10 @@ export class HeaderComponent implements OnInit {
       this._sensorService.on('Server_response', (_data: any) => {
         console.log(_data.msg);
       });
+    });
+    this._sensorService.on('Telegram_data', (data: any) => {
+      console.log(data.msg);
+      this.data.command = data.msg;
     });
   }
 }

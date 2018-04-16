@@ -1,8 +1,28 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const request = require('request');
+
+const url = 'https://api.telegram.org/bot413591560:AAEKLcWCrmyzQT3nd3UGt_PZpuPrWc0Snzo/getUpdates';
 //const mongojs = require('mongojs');
 //const db = mongojs('mongodb://Gennadii:1q2w120195@ds239097.mlab.com:39097/sensors', ['clientData']);
+
+let data = [];
+
+function telegram(){
+  request({
+    url: url,
+    json: true
+  }, function (error, response, body) {
+
+    if (!error && response.statusCode === 200) {
+      //console.log(body); // Print the json response
+      body.result.map((element,i)=>{
+        data = element.message.text;
+      });
+    }
+  });
+}
 
 const index = require('./routes/index');
 const tasks = require('./routes/tasks');
@@ -49,12 +69,6 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
   console.log('New connection made');
 
-  //Test Messages
-  /*
-  * Listen to event1 coming from the client
-  * Take the data that was send to u
-  * And print it in console
-  */
   socket.on('Client_asking', (data) => {
     console.log(data.msg);
   });
@@ -70,4 +84,10 @@ io.on('connection', (socket) => {
       msg: 'Loud and clear'
     })
   });
+  setInterval(function () {
+    telegram();
+    return socket.emit('Telegram_data', {
+      msg: data
+    });
+  }, 2000);
 });
