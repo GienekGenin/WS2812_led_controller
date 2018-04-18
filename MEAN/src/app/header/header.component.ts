@@ -9,9 +9,31 @@ import {SocketService} from '../socket.service';
 export class HeaderComponent implements OnInit {
   constructor(private _sensorService: SocketService) {
   }
-  data = {
-    command: ''
+
+  dataFromBot = {
+    mode: ''
   };
+
+  UIdata = {
+    mode: 0
+  };
+
+  lastCommand = {
+    mode: 0
+  };
+
+  setMode(mode: number) {
+    if (mode < 1 || mode > 21) {
+      alert('Only values between 1 and 21');
+      return;
+    } else {
+      this.UIdata.mode = mode;
+      this._sensorService.emit('Mode', {
+        msg: this.UIdata.mode
+      });
+    }
+  }
+
   ngOnInit() {
     this._sensorService.emit('Client_asking', {
       msg: 'Client to server, can u hear me server?'
@@ -26,8 +48,11 @@ export class HeaderComponent implements OnInit {
       });
     });
     this._sensorService.on('Telegram_data', (data: any) => {
-      console.log(data.msg);
-      this.data.command = data.msg;
+      // console.log(dataFromBot.msg);
+      this.dataFromBot.mode = data.msg;
+    });
+    this._sensorService.on('Current mode', (data: any) => {
+      this.lastCommand.mode = data.msg;
     });
   }
 }

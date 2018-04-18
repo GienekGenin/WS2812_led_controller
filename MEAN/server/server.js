@@ -7,7 +7,10 @@ const url = 'https://api.telegram.org/bot413591560:AAEKLcWCrmyzQT3nd3UGt_PZpuPrW
 //const mongojs = require('mongojs');
 //const db = mongojs('mongodb://Gennadii:1q2w120195@ds239097.mlab.com:39097/sensors', ['clientData']);
 
-let data = [];
+let dataFromBot = [];
+let dataFromUI = {
+  mode: 0
+};
 
 function telegram(){
   request({
@@ -16,9 +19,8 @@ function telegram(){
   }, function (error, response, body) {
 
     if (!error && response.statusCode === 200) {
-      //console.log(body); // Print the json response
       body.result.map((element,i)=>{
-        data = element.message.text;
+        dataFromBot = element.message.text;
       });
     }
   });
@@ -45,6 +47,10 @@ app.use(express.static(staticPath));
 // Catch all other routes and return the index file
 app.get('/', function (req, res) {
   res.sendFile(staticPath + '/index.html');
+});
+
+app.get('/data', function(req,res){
+  res.json(dataFromUI);
 });
 
 //Body Parser MiddleWare
@@ -84,10 +90,16 @@ io.on('connection', (socket) => {
       msg: 'Loud and clear'
     })
   });
+  socket.on('Mode', (data) => {
+    dataFromUI.mode = data.msg;
+    socket.emit('Current mode', {
+      msg: dataFromUI.mode
+    })
+  });
   setInterval(function () {
     telegram();
     return socket.emit('Telegram_data', {
-      msg: data
+      msg: dataFromBot
     });
-  }, 2000);
+  }, 10000);
 });

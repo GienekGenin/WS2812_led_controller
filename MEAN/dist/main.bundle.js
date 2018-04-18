@@ -154,7 +154,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\n  <p>\n    header.component<br>\n  </p>\n  <div class=\"telegaBot\">Last command: {{data.command}}</div>\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\n</div>\n"
+module.exports = "<div style=\"text-align:center\">\n  <p>\n    header.component<br>\n  </p>\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\n  <br>\n  <div>\n    <label for=\"mode\">Type mode 1 or 2</label><input type=\"number\" id=\"mode\" #mode><br>\n    <span>Data from server {{lastCommand.mode}}</span><br>\n    <button (click)=\"setMode(mode.value)\">Set mode</button>\n  </div>\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\n</div>\n"
 
 /***/ }),
 
@@ -179,10 +179,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HeaderComponent = (function () {
     function HeaderComponent(_sensorService) {
         this._sensorService = _sensorService;
-        this.data = {
-            command: ''
+        this.dataFromBot = {
+            mode: ''
+        };
+        this.UIdata = {
+            mode: 0
+        };
+        this.lastCommand = {
+            mode: 0
         };
     }
+    HeaderComponent.prototype.setMode = function (mode) {
+        if (mode < 1 || mode > 21) {
+            alert('Only values between 1 and 21');
+            return;
+        }
+        else {
+            this.UIdata.mode = mode;
+            this._sensorService.emit('Mode', {
+                msg: this.UIdata.mode
+            });
+        }
+    };
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._sensorService.emit('Client_asking', {
@@ -198,8 +216,11 @@ var HeaderComponent = (function () {
             });
         });
         this._sensorService.on('Telegram_data', function (data) {
-            console.log(data.msg);
-            _this.data.command = data.msg;
+            // console.log(dataFromBot.msg);
+            _this.dataFromBot.mode = data.msg;
+        });
+        this._sensorService.on('Current mode', function (data) {
+            _this.lastCommand.mode = data.msg;
         });
     };
     HeaderComponent = __decorate([
