@@ -4,13 +4,10 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 const url = 'https://api.telegram.org/bot413591560:AAEKLcWCrmyzQT3nd3UGt_PZpuPrWc0Snzo/getUpdates';
-//const mongojs = require('mongojs');
-//const db = mongojs('mongodb://Gennadii:1q2w120195@ds239097.mlab.com:39097/sensors', ['clientData']);
+const mongojs = require('mongojs');
+const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data']);
 
 let dataFromBot = [];
-let dataFromUI = {
-  mode: 0
-};
 
 function telegram(){
   request({
@@ -50,7 +47,13 @@ app.get('/', function (req, res) {
 });
 
 app.get('/data', function(req,res){
-  res.json(dataFromUI);
+  db.data.findOne(function (err, data) {
+    if (err) {
+      res.send(err);
+    }
+    console.log("Data from database:" + data.mode);
+    res.json(data.mode);
+  });
 });
 
 //Body Parser MiddleWare
@@ -91,10 +94,20 @@ io.on('connection', (socket) => {
     })
   });
   socket.on('Mode', (data) => {
-    dataFromUI.mode = data.msg;
+    db.data.update({_id: mongojs.ObjectId('5ad7ad52f36d28165c06098f')}, { $set: {mode: data.msg} }, function () {
+      console.log('Done');
+    });
     socket.emit('Current mode', {
-      msg: dataFromUI.mode
+      msg: data.msg
     })
+  });
+  socket.on('Last mode', (data) => {
+    db.data.findOne(function (err, _data) {
+      socket.emit('Last mode', {
+        msg: _data
+      })
+    });
+    console.log(data.msg);
   });
   setInterval(function () {
     telegram();

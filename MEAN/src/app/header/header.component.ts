@@ -54,5 +54,11 @@ export class HeaderComponent implements OnInit {
     this._sensorService.on('Current mode', (data: any) => {
       this.lastCommand.mode = data.msg;
     });
+    this._sensorService.emit('Last mode', {
+      msg: 'Give me data'
+    });
+    this._sensorService.on('Last mode', (data: any) => {
+      this.lastCommand.mode = data.msg;
+    });
   }
 }
