@@ -7,22 +7,6 @@ const url = 'https://api.telegram.org/bot413591560:AAEKLcWCrmyzQT3nd3UGt_PZpuPrW
 const mongojs = require('mongojs');
 const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data']);
 
-let dataFromBot = [];
-
-function telegram(){
-  request({
-    url: url,
-    json: true
-  }, function (error, response, body) {
-
-    if (!error && response.statusCode === 200) {
-      body.result.map((element,i)=>{
-        dataFromBot = element.message.text;
-      });
-    }
-  });
-}
-
 const index = require('./routes/index');
 const tasks = require('./routes/tasks');
 
@@ -55,6 +39,28 @@ app.get('/data', function(req,res){
     res.json(data.mode);
   });
 });
+
+let dataFromBot;
+
+function telegram(){
+  request({
+    url: url,
+    json: true
+  }, function (error, response, body) {
+
+    if (!error && response.statusCode === 200) {
+      body.result.map((element,i)=>{
+        dataFromBot = element.message.text;
+      });
+    }
+  });
+}
+
+app.get('/telegramBot', function(req,res){
+  telegram();
+  res.json(dataFromBot);
+});
+
 
 //Body Parser MiddleWare
 app.use(bodyParser.json());
