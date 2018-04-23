@@ -120,5 +120,5 @@ io.on('connection', (socket) => {
     return socket.emit('Telegram_data', {
       msg: dataFromBot
     });
-  }, 10000);
+  }, 1000);
 });
