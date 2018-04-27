@@ -1,25 +1,26 @@
+/* NodeMCU Scetch for WS2812B LED strip controller */
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <ArduinoJson.h>
 #include <Wire.h>
 
 #define I2CAddressESPWifi 8
-//DynamicJsonBuffer jsonBuffer;
-// Wi-Fi
+// Wi-Fi variables
 HTTPClient http;  //Declare an object of class HTTPClient
-const char* ssid = "LOLEC";
-const char* password = "13052926";
 
+const char* ssid = "SSID";		// Change to your SSID
+const char* password = "PASS";	// Change to your password
+// Timers
 uint32_t lastMillisWIFI = 0;
-// Server
-String lastServerResponse;
+// Flags
 bool permissionToListenServer = HIGH;
+// Server's variables
+String lastServerResponse;
 
 #define flagPin 12
 
 void setup() {
 	Serial.begin(115200);
-	Wire.begin(4, 5);	// Change to Wire.begin() for non ESP.
+	Wire.begin(4, 5);
 	WiFi.begin(ssid, password);
 	pinMode(flagPin, OUTPUT);
 	while (WiFi.status() != WL_CONNECTED)
@@ -34,13 +35,11 @@ void loop() {
 }
 
 void getData() {
-	if (WiFi.status() == WL_CONNECTED && millis() - lastMillisWIFI >= 100)  { //Check WiFi connection status
+	if (WiFi.status() == WL_CONNECTED && millis() - lastMillisWIFI >= 100) {	// Check WiFi connection status and timer
 	lastMillisWIFI = millis();
 	http.begin("http://sheltered-plains-47183.herokuapp.com/telegramBot");
 	http.GET();
 	String serverResponse = http.getString();
-	//char * charArrayServerResponse = new char [serverResponse.length() + 1];
-	//strcpy(charArrayServerResponse, serverResponse.c_str());
 	if (serverResponse != lastServerResponse) {
 		lastServerResponse = serverResponse;
 		Serial.print("Raw response from server: ");
@@ -59,9 +58,8 @@ void getData() {
 	}
 }
 
-void prepareDataForI2C(char serverCommand[])
-{
-	digitalWrite(flagPin, HIGH);
+void prepareDataForI2C(char serverCommand[]) {	// Function which prepare data from website to send on Arduino via I2C
+	digitalWrite(flagPin, HIGH);	// Tell Arduino stop using FastLED.show() function
 	char slaveResponse[5];
 	transmitDataViaI2C(serverCommand);
 	Wire.requestFrom(I2CAddressESPWifi, 4);
@@ -77,7 +75,7 @@ void prepareDataForI2C(char serverCommand[])
 	}
 }
 
-void transmitDataViaI2C(char sC[]) {
+void transmitDataViaI2C(char sC[]) {	// Function which transmit prepared command from server to Arduino via I2C
 	delay(10);
 	Wire.beginTransmission(I2CAddressESPWifi);
 	Wire.write(sC);
