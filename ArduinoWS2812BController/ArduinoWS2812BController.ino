@@ -1,4 +1,4 @@
-/* WS2812B Controller*/
+/* WS2812B Controller with Wi-Fi and I2C */
 #include <TimerOne.h>
 #include <Encod_er.h>
 #include <Button.h>
