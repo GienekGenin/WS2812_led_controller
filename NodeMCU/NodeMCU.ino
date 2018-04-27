@@ -1,83 +1,86 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <SoftwareSerial.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <ArduinoJson.h>
+#include <Wire.h>
 
-const char* ssid = "NodeMCU";
-const char* password = "1q2w120195";
+#define I2CAddressESPWifi 8
+//DynamicJsonBuffer jsonBuffer;
+// Wi-Fi
+HTTPClient http;  //Declare an object of class HTTPClient
+const char* ssid = "LOLEC";
+const char* password = "13052926";
 
-#define ledStrip 6
+uint32_t lastMillisWIFI = 0;
+// Server
+String lastServerResponse;
+bool permissionToListenServer = HIGH;
 
-int lastMode = 0;
-String response;
-int intRes;
-
-String keys [10] = {"0","1","2","3","4","5","6","7","8","9"};
+#define flagPin 12
 
 void setup() {
-  Serial.begin(9600);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.print("Connecting..");
-  }
-  FastLED.addLeds<WS2812B, ledStrip, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(brightness);
+	Serial.begin(115200);
+	Wire.begin(4, 5);	// Change to Wire.begin() for non ESP.
+	WiFi.begin(ssid, password);
+	pinMode(flagPin, OUTPUT);
+	while (WiFi.status() != WL_CONNECTED)
+	{
+		delay(1000);
+		Serial.print('\n');
+		Serial.println("Connecting..");
+	}
+}
+void loop() {
+	getData();
 }
 
 void getData() {
-  if (WiFi.status() == WL_CONNECTED) {                                            //Check WiFi connection status
-    HTTPClient http;                                                              //Declare an object of class HTTPClient
-    http.begin("http://sheltered-plains-47183.herokuapp.com/data");
-    int httpCode = http.GET();                                                    //Send the request
-    if (httpCode > 0) {                                                           //Check the returning code
-      String payload = http.getString();
-      parseData(payload);
-      Serial.println(response);
-      Serial.println(intRes);
-      //mode(payload);
-    }
-    http.end();                                                                   //Close connection
-  }
-  delay(1000);                                                                   //Send a request every 30 seconds
+	if (WiFi.status() == WL_CONNECTED && millis() - lastMillisWIFI >= 100)  { //Check WiFi connection status
+	lastMillisWIFI = millis();
+	http.begin("http://sheltered-plains-47183.herokuapp.com/telegramBot");
+	http.GET();
+	String serverResponse = http.getString();
+	//char * charArrayServerResponse = new char [serverResponse.length() + 1];
+	//strcpy(charArrayServerResponse, serverResponse.c_str());
+	if (serverResponse != lastServerResponse) {
+		lastServerResponse = serverResponse;
+		Serial.print("Raw response from server: ");
+		Serial.println(serverResponse);
+		char commandForSlave[5];
+		Serial.print("Recived command from server: ");
+		for (uint8_t i = 0; i <= 3; i++) {
+			commandForSlave[i] = serverResponse[i + 1];
+			Serial.print(commandForSlave[i]);
+		}
+		commandForSlave[4] = '\0';
+		Serial.print('\n');
+		prepareDataForI2C(commandForSlave);
+	}
+	http.end();
+	}
 }
 
-void loop() {
-  getData();
+void prepareDataForI2C(char serverCommand[])
+{
+	digitalWrite(flagPin, HIGH);
+	char slaveResponse[5];
+	transmitDataViaI2C(serverCommand);
+	Wire.requestFrom(I2CAddressESPWifi, 4);
+	Serial.print("Slave's response on master's request: ");
+	while (Wire.available()) {
+		for (uint8_t i = 0; i <= 3; i++) {
+			slaveResponse[i] = Wire.read();
+			Serial.print(slaveResponse[i]);
+		}
+		slaveResponse[4] = '\0';
+		Serial.print('\n');
+		digitalWrite(flagPin, LOW);
+	}
 }
 
-void parseData(String data){
-  String trueData  = "";
-  for(int i = 0;i<10;i++){
-    for(int g = 0;g<data.length();g++){
-      String symbol = "";
-      symbol = symbol + data[g];  
-      if(symbol==keys[i]){
-        trueData = trueData + symbol;  
-      }
-    }  
-  }
-  response = trueData;
-  intRes = response.toInt();
-}
-
-void mode(int currentMode){
-  Serial.println("In mode");
-    switch(currentMode){
-      case 1: solidColor(0,0,0);
-        Serial.println("In mode 1");
-      break;
-      case 2: solidColor(150,0,0);
-        Serial.println("In mode 2");
-      break;
-      case 3: solidColor(0,150,0);
-      Serial.println("In mode 3");
-      break;
-      case 4: solidColor(0,0,150);
-      Serial.println("In mode 4");
-      break;
-      default: return;
-      break;
-    }
+void transmitDataViaI2C(char sC[]) {
+	delay(10);
+	Wire.beginTransmission(I2CAddressESPWifi);
+	Wire.write(sC);
+	Wire.endTransmission();
+	delay(10);
 }
