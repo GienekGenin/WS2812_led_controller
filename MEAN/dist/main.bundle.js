@@ -265,7 +265,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/intro/intro.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <p>\r\n    intro.component<br>\r\n  </p>\r\n</div>\r\n\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <p>\r\n    About<br>\r\n  </p>\r\n</div>\r\n"
 
 /***/ }),
 
