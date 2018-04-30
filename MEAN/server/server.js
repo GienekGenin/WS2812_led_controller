@@ -61,7 +61,6 @@ app.get('/telegramBot', function(req,res){
   res.json(dataFromBot);
 });
 
-
 //Body Parser MiddleWare
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -77,6 +76,19 @@ app.set('port', process.env.PORT || 8080);
 let server = app.listen(process.env.PORT || 8080, function () {
   let port = server.address().port;
   console.log("App now running on port", port);
+});
+
+let pythonReq;
+
+app.post('/python', function (req, res) {
+  pythonReq = req.body.data;
+  console.log(req.body);
+  res.json(pythonReq);
+});
+
+// Showing that data, and sending it back
+app.get('/python', function (req, res) {
+  res.json(pythonReq);
 });
 
 const io = require('socket.io')(server);
