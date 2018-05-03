@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 const mongojs = require('mongojs');
-const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data']);
+const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data', 'users']);
 
 const gienek = require('./routes/gienek');
 const yosha = require('./routes/yosha');
@@ -40,26 +40,6 @@ app.get('/data', function(req,res){
 });
 
 let dataFromBot;
-
-function telegram(){
-  request({
-    url: url,
-    json: true
-  }, function (error, response, body) {
-
-    if (!error && response.statusCode === 200) {
-      body.result.map((element,i)=>{
-        dataFromBot = element.message.text;
-      });
-    }
-  });
-}
-
-app.get('/telegramBot', function(req,res){
-  telegram();
-  res.json(dataFromBot);
-});
-
 
 //Body Parser MiddleWare
 app.use(bodyParser.json());
@@ -114,10 +94,12 @@ io.on('connection', (socket) => {
     });
     console.log(data.msg);
   });
-  setInterval(function () {
-    telegram();
-    return socket.emit('Telegram_data', {
-      msg: dataFromBot
+  socket.on('users_data', (data) => {
+    db.users.find(function (err, docs) {
+      socket.emit('receive_users', {
+        msg: docs
+      })
     });
-  }, 1000);
+    console.log(data.msg);
+  });
 });

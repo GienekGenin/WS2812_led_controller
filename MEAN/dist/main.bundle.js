@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n    Welcome\r\n  </h1>\r\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\r\n  <nav>\r\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Header Component</a>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Header Component</a>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -86,6 +86,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__ = __webpack_require__("../../../../../src/app/intro/intro.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -101,9 +102,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var appRoutes = [
     { path: 'header', component: __WEBPACK_IMPORTED_MODULE_3__header_header_component__["a" /* HeaderComponent */] },
-    { path: 'intro', component: __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */] }
+    { path: 'intro', component: __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__["a" /* LoginFormComponent */] },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -113,13 +116,14 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_3__header_header_component__["a" /* HeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */]
+                __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__["a" /* LoginFormComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_6__angular_http__["a" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_7__angular_router__["a" /* RouterModule */].forRoot(appRoutes, { enableTracing: false } // <-- debugging purposes only
+                __WEBPACK_IMPORTED_MODULE_7__angular_router__["b" /* RouterModule */].forRoot(appRoutes, { enableTracing: false } // <-- debugging purposes only
                 )
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_4__socket_service__["a" /* SocketService */]],
@@ -315,6 +319,92 @@ var IntroComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__socket_service__["a" /* SocketService */]])
     ], IntroComponent);
     return IntroComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-form/login-form.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host {\r\n  -webkit-box-flex: 1;\r\n      -ms-flex-positive: 1;\r\n          flex-grow: 1;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n}\r\n\r\ndiv.input {\r\n  position: relative;\r\n}\r\n\r\ndiv.input label {\r\n  position: absolute;\r\n  top: 0;\r\n  -webkit-transform: translateY(-50%);\r\n          transform: translateY(-50%);\r\n  left: 10px;\r\n  background: white;\r\n  padding: 5px 2px;\r\n}\r\n\r\ndiv.input input {\r\n  padding: 10px 20px;\r\n  font-size: 25px;\r\n  outline: 0;\r\n}\r\n\r\ndiv.input {\r\n  margin-top: 20px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-form/login-form.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<form (submit)=\"loginUser($event)\">\n  <div class=\"input\">\n    <label>Username</label>\n    <input type=\"text\">\n  </div>\n  <div class=\"input\">\n    <label>Password</label>\n    <input type=\"password\">\n  </div>\n  <div class=\"input\">\n    <input type=\"submit\" value=\"Login\">\n  </div>\n</form>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-form/login-form.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginFormComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__socket_service__ = __webpack_require__("../../../../../src/app/socket.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LoginFormComponent = (function () {
+    function LoginFormComponent(router, _sensorService) {
+        this.router = router;
+        this._sensorService = _sensorService;
+        this.users = [];
+    }
+    LoginFormComponent.prototype.loginUser = function (e) {
+        var userName = e.target.elements[0].value;
+        var password = e.target.elements[1].value;
+        if ((userName === this.users[0].username && password === this.users[0].pass) ||
+            (userName === this.users[1].username && password === this.users[1].pass)) {
+            this.router.navigate(['/header']);
+        }
+        else {
+            alert('Incorrect username or password');
+        }
+    };
+    LoginFormComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._sensorService.emit('users_data', {
+            msg: 'Requesting users data'
+        });
+        this._sensorService.on('receive_users', function (data) {
+            _this.users = data.msg;
+        });
+    };
+    LoginFormComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-login-form',
+            template: __webpack_require__("../../../../../src/app/login-form/login-form.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/login-form/login-form.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_2__socket_service__["a" /* SocketService */]])
+    ], LoginFormComponent);
+    return LoginFormComponent;
 }());
 
 

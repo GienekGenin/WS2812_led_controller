@@ -7,10 +7,12 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { IntroComponent } from './intro/intro.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 const appRoutes: Routes = [
   { path: 'header', component: HeaderComponent },
-  { path: 'intro', component: IntroComponent }
+  { path: 'intro', component: IntroComponent },
+  { path: '', component: LoginFormComponent },
 ];
 
 
@@ -18,7 +20,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    IntroComponent
+    IntroComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
