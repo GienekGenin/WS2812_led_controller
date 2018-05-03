@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Header Component</a>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -87,6 +87,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__ = __webpack_require__("../../../../../src/app/intro/intro.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard/dashboard.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -103,9 +104,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var appRoutes = [
     { path: 'header', component: __WEBPACK_IMPORTED_MODULE_3__header_header_component__["a" /* HeaderComponent */] },
     { path: 'intro', component: __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */] },
+    { path: 'board', component: __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */] },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__["a" /* LoginFormComponent */] },
 ];
 var AppModule = (function () {
@@ -117,7 +120,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_3__header_header_component__["a" /* HeaderComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__["a" /* LoginFormComponent */]
+                __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__["a" /* LoginFormComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -131,6 +135,67 @@ var AppModule = (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/dashboard.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/dashboard.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"text-align:center\">\n  <nav>\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Header Component</a>\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\n  </nav>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/dashboard.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DashboardComponent = (function () {
+    function DashboardComponent() {
+    }
+    DashboardComponent.prototype.ngOnInit = function () {
+    };
+    DashboardComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-dashboard',
+            template: __webpack_require__("../../../../../src/app/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/dashboard/dashboard.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
 
 
@@ -158,7 +223,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Type mode 1 or 2</label><input type=\"number\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Type mode 1 or 2</label><input type=\"number\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -269,7 +334,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/intro/intro.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <p>\r\n    About<br>\r\n  </p>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Header Component</a>\r\n  </nav>\r\n  <p>\r\n    About<br>\r\n  </p>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -346,7 +411,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login-form/login-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"loginUser($event)\">\n  <div class=\"input\">\n    <label>Username</label>\n    <input type=\"text\">\n  </div>\n  <div class=\"input\">\n    <label>Password</label>\n    <input type=\"password\">\n  </div>\n  <div class=\"input\">\n    <input type=\"submit\" value=\"Login\">\n  </div>\n</form>\n"
+module.exports = "<form (submit)=\"loginUser($event)\">\r\n  <div class=\"input\">\r\n    <label>Username</label>\r\n    <input type=\"text\">\r\n  </div>\r\n  <div class=\"input\">\r\n    <label>Password</label>\r\n    <input type=\"password\">\r\n  </div>\r\n  <div class=\"input\">\r\n    <input type=\"submit\" value=\"Login\">\r\n  </div>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -381,7 +446,7 @@ var LoginFormComponent = (function () {
         var password = e.target.elements[1].value;
         if ((userName === this.users[0].username && password === this.users[0].pass) ||
             (userName === this.users[1].username && password === this.users[1].pass)) {
-            this.router.navigate(['/header']);
+            this.router.navigate(['/board']);
         }
         else {
             alert('Incorrect username or password');

@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
     const password = e.target.elements[1].value;
     if ((userName === this.users[0].username && password === this.users[0].pass) ||
       (userName === this.users[1].username && password === this.users[1].pass)) {
-      this.router.navigate(['/header']);
+      this.router.navigate(['/board']);
     } else {
       alert('Incorrect username or password');
     }
