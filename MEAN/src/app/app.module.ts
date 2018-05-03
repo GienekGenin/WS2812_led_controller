@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IntroComponent } from './intro/intro.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {UserService} from './users.service';
 
 const appRoutes: Routes = [
   { path: 'header', component: HeaderComponent },
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
       { enableTracing: false } // <-- debugging purposes only
     )
   ],
-  providers: [SocketService],
+  providers: [SocketService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

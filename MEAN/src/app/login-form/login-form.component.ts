@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SocketService} from '../socket.service';
+import {UserService} from '../users.service';
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +10,7 @@ import {SocketService} from '../socket.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private router: Router, private _sensorService: SocketService) {
+  constructor(private router: Router, private _sensorService: SocketService, private user: UserService) {
   }
 
   users = [];
@@ -20,6 +21,7 @@ export class LoginFormComponent implements OnInit {
     if ((userName === this.users[0].username && password === this.users[0].pass) ||
       (userName === this.users[1].username && password === this.users[1].pass)) {
       this.router.navigate(['/board']);
+      this.user.setUserLoggedIn(userName);
     } else {
       alert('Incorrect username or password');
     }

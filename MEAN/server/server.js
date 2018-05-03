@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 const mongojs = require('mongojs');
-const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data', 'users']);
+const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data', 'users','usersData']);
 
 const gienek = require('./routes/gienek');
 const yosha = require('./routes/yosha');
@@ -38,8 +38,6 @@ app.get('/data', function(req,res){
     res.json(data.mode);
   });
 });
-
-let dataFromBot;
 
 //Body Parser MiddleWare
 app.use(bodyParser.json());
@@ -78,18 +76,34 @@ io.on('connection', (socket) => {
       msg: 'Loud and clear'
     })
   });
-  socket.on('Mode', (data) => {
-    db.data.update({_id: mongojs.ObjectId('5ad7ad52f36d28165c06098f')}, { $set: {mode: data.msg} }, function () {
+  socket.on('mode yosha', (data) => {
+    db.usersData.update({_id: mongojs.ObjectId('5aeaf265734d1d6405fa0c57')}, { $set: {data: data.msg} }, function () {
       console.log('Done');
     });
     socket.emit('Current mode', {
       msg: data.msg
     })
   });
-  socket.on('Last mode', (data) => {
-    db.data.findOne(function (err, _data) {
+  socket.on('mode Gienek', (data) => {
+    db.usersData.update({_id: mongojs.ObjectId('5aeaf286734d1d6405fa0c7f')}, { $set: {data: data.msg} }, function () {
+      console.log('Done');
+    });
+    socket.emit('Current mode', {
+      msg: data.msg
+    })
+  });
+  socket.on('Last mode yosha', (data) => {
+    db.usersData.find(function (err, docs) {
       socket.emit('Last mode', {
-        msg: _data
+        msg: docs[0].data
+      })
+    });
+    console.log(data.msg);
+  });
+  socket.on('Last mode Gienek', (data) => {
+    db.usersData.find(function (err, docs) {
+      socket.emit('Last mode', {
+        msg: docs[1].data
       })
     });
     console.log(data.msg);
