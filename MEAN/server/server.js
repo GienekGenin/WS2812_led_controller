@@ -1,14 +1,12 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const request = require('request');
 
-const url = 'https://api.telegram.org/bot413591560:AAEKLcWCrmyzQT3nd3UGt_PZpuPrWc0Snzo/getUpdates';
 const mongojs = require('mongojs');
-const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data']);
+const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data', 'users', 'tokens']);
 
-const index = require('./routes/index');
-const tasks = require('./routes/tasks');
+const gienek = require('./routes/gienek');
+const yosha = require('./routes/yosha');
 
 const app = express();
 
@@ -40,25 +38,8 @@ app.get('/data', function(req,res){
   });
 });
 
-let dataFromBot;
-
-function telegram(){
-  request({
-    url: url,
-    json: true
-  }, function (error, response, body) {
-
-    if (!error && response.statusCode === 200) {
-      body.result.map((element,i)=>{
-        dataFromBot = element.message.text;
-      });
-    }
-  });
-}
-
 app.get('/telegramBot', function(req,res){
-  telegram();
-  res.json(dataFromBot);
+
 });
 
 //Body Parser MiddleWare
@@ -66,10 +47,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 //Home page route
-app.use('/index', index);
+app.use('/gienek', gienek);
 
 //Tasks page route
-app.use('/api', tasks);
+app.use('/yosha', yosha);
 
 app.set('port', process.env.PORT || 8080);
 
