@@ -56,11 +56,14 @@ let server = app.listen(process.env.PORT || 8080, function () {
   console.log("App now running on port", port);
 });
 
-let pythonReq;
+let pythonReq = {
+  data:'',
+  username:''
+};
 
 app.post('/python', function (req, res) {
-  pythonReq = req.body.data;
-  console.log(req.body);
+  pythonReq.data = req.body.data;
+  pythonReq.username = req.body.username;
   res.json(pythonReq);
 });
 
