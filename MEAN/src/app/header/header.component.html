@@ -1,11 +1,14 @@
 <div style="text-align:center">
+  <nav>
+    <a routerLink="/intro" routerLinkActive="active">Intro Component</a>
+  </nav>
   <p>
     Select mode<br>
   </p>
   <div class="telegaBot">Last command: {{dataFromBot.command}}</div>
   <br>
   <div>
-    <label for="mode">Type mode 1 or 2</label><input type="number" id="mode" #mode><br>
+    <label for="mode">Type mode 1 or 2</label><input type="text" id="mode" #mode><br>
     <span>Data from server {{lastCommand.mode}}</span><br>
     <button (click)="setMode(mode.value)">Set mode</button>
   </div>

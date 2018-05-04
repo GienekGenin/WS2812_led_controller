@@ -19,7 +19,7 @@ function getUpdates() {
 
     if (!error && response.statusCode === 200) {
       body.result.map((element, i) => {
-        if (element.message.from.first_name === 'Gennadii') {
+        if (element.message.from.username === 'gendos123') {
           db.usersData.findAndModify({
             query: {username: 'Gienek'},
             update: {$set: {data: element.message.text}},
