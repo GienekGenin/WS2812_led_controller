@@ -96,7 +96,7 @@ io.on('connection', (socket) => {
       msg: data.msg
     })
   });
-  socket.on('mode Gienek', (data) => {
+  socket.on('mode gendos123', (data) => {
     db.usersData.update({_id: mongojs.ObjectId('5aeaf286734d1d6405fa0c7f')}, {$set: {data: data.msg}}, function () {
       console.log('Done');
     });
@@ -112,7 +112,7 @@ io.on('connection', (socket) => {
     });
     console.log(data.msg);
   });
-  socket.on('Last mode Gienek', (data) => {
+  socket.on('Last mode gendos123', (data) => {
     db.usersData.find(function (err, docs) {
       socket.emit('Last mode', {
         msg: docs[1].data
