@@ -21,7 +21,7 @@ function getUpdates() {
       body.result.map((element, i) => {
         if (element.message.from.username === 'gendos123') {
           db.usersData.findAndModify({
-            query: {username: 'Gienek'},
+            query: {username: 'gendos123'},
             update: {$set: {data: element.message.text}},
             new: true
           }, function (err, doc, lastErrorObject) {
