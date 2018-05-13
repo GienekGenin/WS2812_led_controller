@@ -2,7 +2,7 @@
 @include mat-core();
 
 $custom-primary: mat-palette($mat-grey, 50);
-$custom-accent:  mat-palette($mat-red);
+$custom-accent:  mat-palette($mat-red, 300);
 
 $custom-theme: mat-light-theme($custom-primary, $custom-accent);
 

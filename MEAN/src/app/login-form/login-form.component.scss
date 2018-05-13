@@ -5,6 +5,7 @@ form {
   margin: auto;
   border: 3px solid white;
   border-radius: 15px;
+  padding-top: 15px;
 }
 
 mat-form-field {
@@ -21,10 +22,20 @@ button {
 }
 
 input {
-  background-color: white;
   padding-top: 10px;
-  color: black;
+  color: white;
+  background-color: black;
   margin: auto;
+  border: 1px solid white;
+  width: 100%;
+  transition: 1s;
+  &:focus{
+    border-color: black;
+
+  }
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+  }
 }
 
 h1{
