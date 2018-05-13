@@ -1,13 +1,11 @@
 <form (submit)="loginUser($event)">
+  <mat-form-field>
+    <input matInput placeholder="Username" type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="password" type="password">
+  </mat-form-field>
   <div class="input">
-    <label>Username</label>
-    <input type="text">
-  </div>
-  <div class="input">
-    <label>Password</label>
-    <input type="password">
-  </div>
-  <div class="input">
-    <input type="submit" value="Login">
+    <button mat-button type="submit" value="Login">Login</button>
   </div>
 </form>

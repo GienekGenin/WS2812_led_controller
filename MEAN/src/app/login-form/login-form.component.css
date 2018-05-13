@@ -1,29 +1,66 @@
-:host {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  color: white;
+  background-color: blue;
 }
 
-div.input {
-  position: relative;
+mat-form-field {
+  width: 100%;
+  color: white;
 }
 
-div.input label {
-  position: absolute;
-  top: 0;
-  transform: translateY(-50%);
-  left: 10px;
-  background: white;
-  padding: 5px 2px;
+button {
+  background-color: white;
+  color: black;
 }
 
-div.input input {
-  padding: 10px 20px;
-  font-size: 25px;
-  outline: 0;
+input{
+  background-color: white;
+  color: black;
 }
 
-div.input {
-  margin-top: 20px;
+.mat-focused .placeholder {
+  color: #00D318;
 }
+
+::-webkit-input-placeholder {
+  color:    #999;
+}
+:-moz-placeholder {
+  color:    #999;
+}
+::-moz-placeholder {
+  color:    #999;
+}
+:-ms-input-placeholder {
+  color:    #999;
+}
+
+/* Different color for some fields */
+
+#name_2::-webkit-input-placeholder,
+#textarea_2::-webkit-input-placeholder
+{
+  color:    #FF0000;
+}
+
+#name_2:-moz-placeholder,
+#textarea_2:-moz-placeholder
+{
+  color:    #FF0000;
+}
+
+#name_2::-moz-placeholder,
+#textarea_2::-moz-placeholder
+{
+  color:    #FF0000;
+}
+
+#name_2:-ms-input-placeholder,
+#textarea_2:-ms-input-placeholder
+{
+  color:    #FF0000;
+}
+

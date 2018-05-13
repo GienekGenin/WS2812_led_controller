@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
   users = [];
 
   loginUser(e) {
+    console.log(e.target.elements);
     const userName = e.target.elements[0].value;
     const password = e.target.elements[1].value;
     if ((userName === this.users[0].username && password === this.users[0].pass) ||
