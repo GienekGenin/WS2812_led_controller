@@ -2,24 +2,31 @@ form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
+  margin: auto;
+  border: 3px solid white;
+  border-radius: 15px;
 }
 
 mat-form-field {
-  width: 50%;
+  width: 100%;
+  margin: auto;
 }
 
 button {
   background-color: white;
   color: black;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 0;
 }
 
 input {
   background-color: white;
-  padding: 5px;
-  border-radius: 5px;
+  padding-top: 10px;
   color: black;
-  &:hover {
-    border-radius: 10px;
-    transition: 1s;
-  }
+  margin: auto;
+}
+
+h1{
+  text-align: center;
 }
