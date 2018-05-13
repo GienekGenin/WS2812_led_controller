@@ -1,0 +1,25 @@
+form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+button {
+  background-color: white;
+  color: black;
+}
+
+input {
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  color: black;
+  &:hover {
+    border-radius: 10px;
+    transition: 1s;
+  }
+}
