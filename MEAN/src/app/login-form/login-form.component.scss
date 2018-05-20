@@ -1,11 +1,20 @@
+.form{
+  margin-top: 100px;
+}
+
 form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
-  margin: auto;
-  border: 3px solid white;
+  border: 1px solid white;
   border-radius: 15px;
   padding-top: 15px;
+  margin: auto;
+  transition: 1s;
+  &:hover{
+    border-color: #50E3C2;
+    transition: 1s;
+  }
 }
 
 mat-form-field {
@@ -14,11 +23,18 @@ mat-form-field {
 }
 
 button {
-  background-color: white;
-  color: black;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 0;
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+  transition: 1s;
+  &:hover{
+    background-color: white;
+    color: black;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 0;
+    transition: 1s;
+  }
 }
 
 input {
@@ -26,7 +42,8 @@ input {
   color: white;
   background-color: black;
   margin: auto;
-  border: 1px solid white;
+  border-top: 1px solid #50E3C2;
+  border-bottom: 1px solid #50E3C2;
   width: 100%;
   transition: 1s;
   &:focus{
@@ -34,9 +51,11 @@ input {
 
   }
   &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-box-shadow: 0 0 0 30px black inset;
+    -webkit-text-fill-color: white !important;
   }
 }
+
 
 h1{
   text-align: center;

@@ -354,14 +354,14 @@ var IntroComponent = /** @class */ (function () {
 /***/ "./src/app/login-form/login-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Welcome</h1>\r\n<form (submit)=\"loginUser($event)\" autocomplete=\"off\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Username\" type=\"text\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Password\" type=\"password\">\r\n  </mat-form-field>\r\n  <div class=\"input\">\r\n    <button mat-button type=\"submit\" value=\"Login\">Login</button>\r\n  </div>\r\n</form>\r\n"
+module.exports = "<div class=\"form\">\r\n  <h1>Welcome</h1>\r\n  <form (submit)=\"loginUser($event)\" autocomplete=\"off\">\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Username\" type=\"text\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Password\" type=\"password\">\r\n    </mat-form-field>\r\n    <div class=\"input\">\r\n      <button mat-button type=\"submit\" value=\"Login\">Login</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ "./src/app/login-form/login-form.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = "form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n  margin: auto;\n  border: 3px solid white;\n  border-radius: 15px;\n  padding-top: 15px; }\n\nmat-form-field {\n  width: 100%;\n  margin: auto; }\n\nbutton {\n  background-color: white;\n  color: black;\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 7px;\n  border-bottom-right-radius: 0; }\n\ninput {\n  padding-top: 10px;\n  color: white;\n  background-color: black;\n  margin: auto;\n  border: 1px solid white;\n  width: 100%;\n  -webkit-transition: 1s;\n  transition: 1s; }\n\ninput:focus {\n    border-color: black; }\n\ninput:-webkit-autofill {\n    -webkit-box-shadow: 0 0 0 30px white inset; }\n\nh1 {\n  text-align: center; }\n"
+module.exports = ".form {\n  margin-top: 100px; }\n\nform {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n  border: 1px solid white;\n  border-radius: 15px;\n  padding-top: 15px;\n  margin: auto;\n  -webkit-transition: 1s;\n  transition: 1s; }\n\nform:hover {\n    border-color: #50E3C2;\n    -webkit-transition: 1s;\n    transition: 1s; }\n\nmat-form-field {\n  width: 100%;\n  margin: auto; }\n\nbutton {\n  background-color: black;\n  color: white;\n  border-radius: 15px;\n  -webkit-transition: 1s;\n  transition: 1s; }\n\nbutton:hover {\n    background-color: white;\n    color: black;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 11px;\n    border-bottom-right-radius: 0;\n    -webkit-transition: 1s;\n    transition: 1s; }\n\ninput {\n  padding-top: 10px;\n  color: white;\n  background-color: black;\n  margin: auto;\n  border-top: 1px solid #50E3C2;\n  border-bottom: 1px solid #50E3C2;\n  width: 100%;\n  -webkit-transition: 1s;\n  transition: 1s; }\n\ninput:focus {\n    border-color: black; }\n\ninput:-webkit-autofill {\n    -webkit-box-shadow: 0 0 0 30px black inset;\n    -webkit-text-fill-color: white !important; }\n\nh1 {\n  text-align: center; }\n"
 
 /***/ }),
 
