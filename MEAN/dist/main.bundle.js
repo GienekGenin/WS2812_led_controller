@@ -191,14 +191,14 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Type mode 1 or 2</label><input type=\"text\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button mat-button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Mode: </label><input type=\"text\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button mat-button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ "./src/app/header/header.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = "* {\n  color: white; }\n\ninput {\n  color: black; }\n\nbutton {\n  background-color: white;\n  color: black; }\n"
+module.exports = "* {\n  color: white; }\n\ninput {\n  color: black; }\n\nbutton {\n  background-color: white;\n  color: black; }\n\na {\n  text-decoration: none; }\n"
 
 /***/ }),
 
@@ -400,7 +400,7 @@ var LoginFormComponent = /** @class */ (function () {
         var password = e.target.elements[1].value;
         if ((userName === this.users[0].username && password === this.users[0].pass) ||
             (userName === this.users[1].username && password === this.users[1].pass)) {
-            this.router.navigate(['/board']);
+            this.router.navigate(['/header']);
             this.user.setUserLoggedIn(userName);
         }
         else {
