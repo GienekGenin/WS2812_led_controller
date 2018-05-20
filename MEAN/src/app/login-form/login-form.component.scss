@@ -23,17 +23,19 @@ mat-form-field {
 }
 
 button {
-  color: white;
-  border-radius: 15px;
-  background-color: black;
+  color: #fff;
+  border: none;
+  font-size: 1.3rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 11px;
+  background: rgba(0,0,0,0.5);
   transition: 1s;
   &:hover{
     color: black;
-    background-color: white;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 11px;
-    transition: 1s;
+    background: rgba(255,255,255,0.23);
+    transition: 1s background;
   }
 }
 
@@ -44,22 +46,26 @@ input {
   transition: 1s;
   padding-top: 10px;
   padding-left: 1%;
-  background-color: black;
-  border-top: 1px solid #50E3C2;
-  border-bottom: 1px solid #50E3C2;
-  &:hover{
-    border-color: white;
-    transition: 1s;
-  }
+  background-color: rgba(0,0,0,0.3);
   &:focus{
     border-color: black;
   }
-  &:-webkit-autofill {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: white !important;
-    -webkit-box-shadow: 0 0 0 30px black inset;
   }
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white !important;
+}
 
 h1{
   text-align: center;
