@@ -10,6 +10,8 @@ import { IntroComponent } from './intro/intro.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {UserService} from './users.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 const appRoutes: Routes = [
   { path: 'header', component: HeaderComponent },
@@ -31,6 +33,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only

@@ -6,7 +6,7 @@ import {UserService} from '../users.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
 
@@ -16,11 +16,12 @@ export class LoginFormComponent implements OnInit {
   users = [];
 
   loginUser(e) {
+    console.log(e.target.elements);
     const userName = e.target.elements[0].value;
     const password = e.target.elements[1].value;
     if ((userName === this.users[0].username && password === this.users[0].pass) ||
       (userName === this.users[1].username && password === this.users[1].pass)) {
-      this.router.navigate(['/board']);
+      this.router.navigate(['/header']);
       this.user.setUserLoggedIn(userName);
     } else {
       alert('Incorrect username or password');
