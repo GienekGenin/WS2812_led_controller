@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {UserService} from './users.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorComponent } from './color/color.component';
 
 const appRoutes: Routes = [
   { path: 'header', component: HeaderComponent },
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     IntroComponent,
     LoginFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    ColorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ColorPickerModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only

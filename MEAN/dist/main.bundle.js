@@ -80,12 +80,16 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__users_service__ = __webpack_require__("./src/app/users.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__material_module__ = __webpack_require__("./src/app/material.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_ngx_color_picker__ = __webpack_require__("./node_modules/ngx-color-picker/dist/ngx-color-picker.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__color_color_component__ = __webpack_require__("./src/app/color/color.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -116,7 +120,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__header_header_component__["a" /* HeaderComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__intro_intro_component__["a" /* IntroComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__login_form_login_form_component__["a" /* LoginFormComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */]
+                __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__color_color_component__["a" /* ColorComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -124,6 +129,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__angular_http__["a" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
                 __WEBPACK_IMPORTED_MODULE_13__material_module__["a" /* MaterialModule */],
+                __WEBPACK_IMPORTED_MODULE_14_ngx_color_picker__["a" /* ColorPickerModule */],
                 __WEBPACK_IMPORTED_MODULE_7__angular_router__["b" /* RouterModule */].forRoot(appRoutes, { enableTracing: false } // <-- debugging purposes only
                 )
             ],
@@ -132,6 +138,82 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/color/color.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <div class=\"row\" style=\"height: 320px\">\n    <div class=\"col-md-3\" (mousemove)=\"sendColor(arrayColors[selectedColor])\">\n            <span [style.background]=\"arrayColors[selectedColor]\" [cpToggle]=\"true\" [cpDialogDisplay]=\"'inline'\"\n                  [cpCancelButton]=\"true\" [cpCancelButtonClass]=\"'btn btn-primary btn-xs'\"\n                  [(colorPicker)]=\"arrayColors[selectedColor]\"></span>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/color/color.component.scss":
+/***/ (function(module, exports) {
+
+module.exports = "input {\n  width: 150px;\n  margin-bottom: 16px; }\n\n.cmyk-text {\n  float: left;\n  width: 72px;\n  height: 72px;\n  font-weight: bolder;\n  line-height: 72px;\n  text-align: center;\n  text-shadow: 1px 1px 2px #bbb; }\n\n.color-box {\n  width: 100px;\n  height: 25px;\n  margin: 16px auto;\n  cursor: pointer; }\n\n.change-me {\n  cursor: pointer;\n  font-size: 30px;\n  font-weight: bolder; }\n"
+
+/***/ }),
+
+/***/ "./src/app/color/color.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ColorComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__socket_service__ = __webpack_require__("./src/app/socket.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__users_service__ = __webpack_require__("./src/app/users.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ColorComponent = /** @class */ (function () {
+    function ColorComponent(_sensorService, user) {
+        this._sensorService = _sensorService;
+        this.user = user;
+        this.previousColor = null;
+        this.arrayColors = {
+            color: '#2883e9',
+        };
+        this.selectedColor = 'color1';
+    }
+    ColorComponent.prototype.sendColor = function (color) {
+        if (color === undefined) {
+            return;
+        }
+        if (this.previousColor !== color) {
+            this.previousColor = color;
+            console.log(color);
+            this._sensorService.emit('Color_change ' + this.user.username, {
+                msg: this.previousColor
+            });
+        }
+    };
+    ColorComponent.prototype.ngOnInit = function () {
+        // this._sensorService.on('******', (data: any) => {
+        //   console.log(data.msg);
+        // });
+    };
+    ColorComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-color',
+            template: __webpack_require__("./src/app/color/color.component.html"),
+            styles: [__webpack_require__("./src/app/color/color.component.scss")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__socket_service__["a" /* SocketService */], __WEBPACK_IMPORTED_MODULE_2__users_service__["a" /* UserService */]])
+    ], ColorComponent);
+    return ColorComponent;
 }());
 
 
@@ -191,7 +273,7 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Mode: </label><input type=\"text\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button mat-button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <div id=\"chartdiv\" [style.width.%]=\"100\" [style.height.px]=\"500\"></div>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Mode: </label><input type=\"text\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button mat-button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <app-color></app-color>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -586,7 +668,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_17" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_18" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_3__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
