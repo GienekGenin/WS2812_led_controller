@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row" style="height: 320px">
+    <div class="col-md-3" (mousemove)="sendColor(arrayColors[selectedColor])">
+            <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"
+                  [cpCancelButton]="true" [cpCancelButtonClass]="'btn btn-primary btn-xs'"
+                  [(colorPicker)]="arrayColors[selectedColor]"></span>
+    </div>
+  </div>
+</div>
