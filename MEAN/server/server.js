@@ -128,4 +128,11 @@ io.on('connection', (socket) => {
     });
     console.log(data.msg);
   });
+  // Color changes
+  socket.on('Color_change yosha', (data) => {
+    console.log(data.msg);
+  });
+  socket.on('Color_change gendos123', (data) => {
+    console.log(data.msg);
+  });
 });

@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SocketService} from '../socket.service';
+import {UserService} from '../users.service';
 
 @Component({
   selector: 'app-color',
@@ -6,7 +8,9 @@ import {Component} from '@angular/core';
   styleUrls: ['./color.component.scss']
 })
 
-export class ColorComponent {
+export class ColorComponent implements OnInit {
+  constructor(private _sensorService: SocketService, private user: UserService) {
+  }
 
   previousColor = null;
 
@@ -23,6 +27,15 @@ export class ColorComponent {
     if (this.previousColor !== color) {
       this.previousColor = color;
       console.log(color);
+      this._sensorService.emit('Color_change ' + this.user.username, {
+        msg: this.previousColor
+      });
     }
+  }
+
+  ngOnInit() {
+    // this._sensorService.on('******', (data: any) => {
+    //   console.log(data.msg);
+    // });
   }
 }
