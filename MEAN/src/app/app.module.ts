@@ -7,10 +7,17 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { IntroComponent } from './intro/intro.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {UserService} from './users.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 const appRoutes: Routes = [
   { path: 'header', component: HeaderComponent },
-  { path: 'intro', component: IntroComponent }
+  { path: 'intro', component: IntroComponent },
+  { path: 'board', component: DashboardComponent },
+  { path: '', component: LoginFormComponent },
 ];
 
 
@@ -18,18 +25,22 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    IntroComponent
+    IntroComponent,
+    LoginFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
     )
   ],
-  providers: [SocketService],
+  providers: [SocketService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

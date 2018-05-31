@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const request = require('request');
 
-const url = 'https://api.telegram.org/bot413591560:AAEKLcWCrmyzQT3nd3UGt_PZpuPrWc0Snzo/getUpdates';
 const mongojs = require('mongojs');
-const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data']);
 
-const index = require('./routes/index');
-const tasks = require('./routes/tasks');
+const db = mongojs('mongodb://Gennadii:1q2w120195@ds151259.mlab.com:51259/ws2812', ['data', 'users', 'usersData']);
+
+const gienek = require('./routes/gienek');
+const yosha = require('./routes/yosha');
 
 const app = express();
 
@@ -30,53 +29,43 @@ app.get('/', function (req, res) {
   res.sendFile(staticPath + '/index.html');
 });
 
-app.get('/data', function(req,res){
-  db.data.findOne(function (err, data) {
-    if (err) {
-      res.send(err);
-    }
-    console.log("Data from database:" + data.mode);
-    res.json(data.mode);
+app.get('/data/yosha', function (req, res) {
+  db.usersData.find(function (err, docs) {
+    res.json(docs[0].data);
   });
 });
 
-let dataFromBot;
-
-function telegram(){
-  request({
-    url: url,
-    json: true
-  }, function (error, response, body) {
-
-    if (!error && response.statusCode === 200) {
-      body.result.map((element,i)=>{
-        dataFromBot = element.message.text;
-      });
-    }
+app.get('/data/gendos123', function (req, res) {
+  db.usersData.find(function (err, docs) {
+    res.json(docs[1].data);
   });
-}
-
-app.get('/telegramBot', function(req,res){
-  telegram();
-  res.json(dataFromBot);
 });
-
 
 //Body Parser MiddleWare
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 //Home page route
-app.use('/index', index);
+app.use('/gienek', gienek);
 
 //Tasks page route
-app.use('/api', tasks);
+app.use('/yosha', yosha);
 
 app.set('port', process.env.PORT || 8080);
 
 let server = app.listen(process.env.PORT || 8080, function () {
   let port = server.address().port;
   console.log("App now running on port", port);
+});
+
+app.post('/python', function (req, res) {
+  db.usersData.findAndModify({
+    query: {username: req.body.username},
+    update: {$set: {data: req.body.data}},
+    new: true
+  }, function (err, doc, lastErrorObject) {
+  });
+  res.json({username:req.body.username, data:req.body.data});
 });
 
 const io = require('socket.io')(server);
@@ -99,26 +88,44 @@ io.on('connection', (socket) => {
       msg: 'Loud and clear'
     })
   });
-  socket.on('Mode', (data) => {
-    db.data.update({_id: mongojs.ObjectId('5ad7ad52f36d28165c06098f')}, { $set: {mode: data.msg} }, function () {
+  socket.on('mode yosha', (data) => {
+    db.usersData.update({_id: mongojs.ObjectId('5aeaf265734d1d6405fa0c57')}, {$set: {data: data.msg}}, function () {
       console.log('Done');
     });
     socket.emit('Current mode', {
       msg: data.msg
     })
   });
-  socket.on('Last mode', (data) => {
-    db.data.findOne(function (err, _data) {
+  socket.on('mode gendos123', (data) => {
+    db.usersData.update({_id: mongojs.ObjectId('5aeaf286734d1d6405fa0c7f')}, {$set: {data: data.msg}}, function () {
+      console.log('Done');
+    });
+    socket.emit('Current mode', {
+      msg: data.msg
+    })
+  });
+  socket.on('Last mode yosha', (data) => {
+    db.usersData.find(function (err, docs) {
       socket.emit('Last mode', {
-        msg: _data
+        msg: docs[0].data
       })
     });
     console.log(data.msg);
   });
-  setInterval(function () {
-    telegram();
-    return socket.emit('Telegram_data', {
-      msg: dataFromBot
+  socket.on('Last mode gendos123', (data) => {
+    db.usersData.find(function (err, docs) {
+      socket.emit('Last mode', {
+        msg: docs[1].data
+      })
     });
-  }, 1000);
+    console.log(data.msg);
+  });
+  socket.on('users_data', (data) => {
+    db.users.find(function (err, docs) {
+      socket.emit('receive_users', {
+        msg: docs
+      })
+    });
+    console.log(data.msg);
+  });
 });
