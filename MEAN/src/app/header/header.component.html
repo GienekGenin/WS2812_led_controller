@@ -12,12 +12,13 @@
   </div>
   <mat-slider thumbLabel tickInterval="1" min="0" max="255" step="1" value="255" (change)="slider($event)"></mat-slider>
   <mat-radio-group (change)="setMode($event)">
-    <mat-radio-button value="1">White</mat-radio-button>
-    <mat-radio-button value="2">Yellow</mat-radio-button>
-    <mat-radio-button value="3">Rainbow</mat-radio-button>
-    <mat-radio-button value="4">Rainbow blinks</mat-radio-button>
-    <mat-radio-button value="5">Snake</mat-radio-button>
-    <mat-radio-button value="6">Confetti</mat-radio-button>
+    <mat-radio-button value="M1">White</mat-radio-button>
+    <mat-radio-button value="M2">Yellow</mat-radio-button>
+    <mat-radio-button value="M3">Rainbow</mat-radio-button>
+    <mat-radio-button value="M4">Rainbow blinks</mat-radio-button>
+    <mat-radio-button value="M5">Snake</mat-radio-button>
+    <mat-radio-button value="M6">Confetti</mat-radio-button>
   </mat-radio-group>
+  <mat-slide-toggle (change)="setMode($event)"></mat-slide-toggle>
   <app-color></app-color>
 </div>

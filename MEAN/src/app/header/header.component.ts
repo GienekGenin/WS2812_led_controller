@@ -15,29 +15,35 @@ export class HeaderComponent implements OnInit {
     mode: ''
   };
 
-  UIdata = {
-    mode: 0
-  };
+  UIdata: any;
 
   lastCommand = {
     mode: 0
   };
 
   setMode(e) {
-    console.log(e.value);
-    this.UIdata.mode = e.value;
+    if (e.checked === true) {
+      this.UIdata = 'on';
+    } else if (e.checked === false) {
+      this.UIdata = 'off';
+    } else {
+      this.UIdata = e.value;
+    }
     this._sensorService.emit('mode ' + this.user.username, {
-      msg: this.UIdata.mode
+      msg: this.UIdata
     });
   }
+
   // change event on mouse-move after testing
   slider(e) {
-    console.log(e.value);
-    this.UIdata.mode = e.value;
-    this._sensorService.emit('mode ' + this.user.username, {
-      msg: this.UIdata.mode
-    });
+    if (this.UIdata !== e.value) {
+      this.UIdata = e.value;
+      this._sensorService.emit('mode ' + this.user.username, {
+        msg: this.UIdata
+      });
+    }
   }
+
   ngOnInit() {
     this._sensorService.emit('Client_asking', {
       msg: 'Client to server, can u hear me server?'
@@ -62,6 +68,7 @@ export class HeaderComponent implements OnInit {
       msg: 'Give me data'
     });
     this._sensorService.on('Last mode', (data: any) => {
+      console.log(data.msg);
       this.lastCommand.mode = data.msg;
     });
   }
