@@ -23,13 +23,21 @@ export class HeaderComponent implements OnInit {
     mode: 0
   };
 
-  setMode(mode: number) {
-    this.UIdata.mode = mode;
+  setMode(e) {
+    console.log(e.value);
+    this.UIdata.mode = e.value;
     this._sensorService.emit('mode ' + this.user.username, {
       msg: this.UIdata.mode
     });
   }
-
+  // change event on mouse-move after testing
+  slider(e) {
+    console.log(e.value);
+    this.UIdata.mode = e.value;
+    this._sensorService.emit('mode ' + this.user.username, {
+      msg: this.UIdata.mode
+    });
+  }
   ngOnInit() {
     this._sensorService.emit('Client_asking', {
       msg: 'Client to server, can u hear me server?'

@@ -8,9 +8,16 @@
   <div class="telegaBot">Last command: {{dataFromBot.command}}</div>
   <br>
   <div>
-    <label for="mode">Mode: </label><input type="text" id="mode" #mode><br>
     <span>Data from server {{lastCommand.mode}}</span><br>
-    <button mat-button (click)="setMode(mode.value)">Set mode</button>
   </div>
+  <mat-slider thumbLabel tickInterval="1" min="0" max="255" step="1" value="255" (change)="slider($event)"></mat-slider>
+  <mat-radio-group (change)="setMode($event)">
+    <mat-radio-button value="1">White</mat-radio-button>
+    <mat-radio-button value="2">Yellow</mat-radio-button>
+    <mat-radio-button value="3">Rainbow</mat-radio-button>
+    <mat-radio-button value="4">Rainbow blinks</mat-radio-button>
+    <mat-radio-button value="5">Snake</mat-radio-button>
+    <mat-radio-button value="6">Confetti</mat-radio-button>
+  </mat-radio-group>
   <app-color></app-color>
 </div>

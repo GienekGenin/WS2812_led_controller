@@ -27,8 +27,8 @@ export class ColorComponent implements OnInit {
     if (this.previousColor !== color) {
       this.previousColor = color;
       console.log(color);
-      this._sensorService.emit('Color_change ' + this.user.username, {
-        msg: this.previousColor
+      this._sensorService.emit('mode ' + this.user.username, {
+        msg: color
       });
     }
   }

@@ -27,7 +27,6 @@ export class LoginFormComponent implements OnInit {
       alert('Incorrect username or password');
     }
   }
-
   ngOnInit() {
     this._sensorService.emit('users_data', {
       msg: 'Requesting users data'
