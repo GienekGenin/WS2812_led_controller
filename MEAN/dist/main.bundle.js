@@ -147,7 +147,7 @@ var AppModule = /** @class */ (function () {
 /***/ "./src/app/color/color.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"row\" style=\"height: 320px\">\n    <div class=\"col-md-3\" (mousemove)=\"sendColor(arrayColors[selectedColor])\">\n            <span [style.background]=\"arrayColors[selectedColor]\" [cpToggle]=\"true\" [cpDialogDisplay]=\"'inline'\"\n                  [cpCancelButton]=\"true\" [cpCancelButtonClass]=\"'btn btn-primary btn-xs'\"\n                  [(colorPicker)]=\"arrayColors[selectedColor]\"></span>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\r\n    <div class=\"row\" style=\"height: 320px\">\r\n    <div class=\"col-md-3\" (mousemove)=\"sendColor(arrayColors[selectedColor])\">\r\n            <span [style.background]=\"arrayColors[selectedColor]\" [cpToggle]=\"true\" [cpDialogDisplay]=\"'inline'\"\r\n                  [cpCancelButton]=\"true\" [cpCancelButtonClass]=\"'btn btn-primary btn-xs'\"\r\n                  [(colorPicker)]=\"arrayColors[selectedColor]\"></span>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -195,8 +195,8 @@ var ColorComponent = /** @class */ (function () {
         if (this.previousColor !== color) {
             this.previousColor = color;
             console.log(color);
-            this._sensorService.emit('Color_change ' + this.user.username, {
-                msg: this.previousColor
+            this._sensorService.emit('mode ' + this.user.username, {
+                msg: color
             });
         }
     };
@@ -273,7 +273,7 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <label for=\"mode\">Mode: </label><input type=\"text\" id=\"mode\" #mode><br>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n    <button mat-button (click)=\"setMode(mode.value)\">Set mode</button>\r\n  </div>\r\n  <app-color></app-color>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n  </div>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"255\" (change)=\"slider($event)\"></mat-slider>\r\n  <mat-radio-group (change)=\"setMode($event)\">\r\n    <mat-radio-button value=\"M1\">White</mat-radio-button>\r\n    <mat-radio-button value=\"M2\">Yellow</mat-radio-button>\r\n    <mat-radio-button value=\"M3\">Rainbow</mat-radio-button>\r\n    <mat-radio-button value=\"M4\">Rainbow blinks</mat-radio-button>\r\n    <mat-radio-button value=\"M5\">Snake</mat-radio-button>\r\n    <mat-radio-button value=\"M6\">Confetti</mat-radio-button>\r\n  </mat-radio-group>\r\n  <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n  <app-color></app-color>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -311,18 +311,32 @@ var HeaderComponent = /** @class */ (function () {
         this.dataFromBot = {
             mode: ''
         };
-        this.UIdata = {
-            mode: 0
-        };
         this.lastCommand = {
             mode: 0
         };
     }
-    HeaderComponent.prototype.setMode = function (mode) {
-        this.UIdata.mode = mode;
+    HeaderComponent.prototype.setMode = function (e) {
+        if (e.checked === true) {
+            this.UIdata = 'on';
+        }
+        else if (e.checked === false) {
+            this.UIdata = 'off';
+        }
+        else {
+            this.UIdata = e.value;
+        }
         this._sensorService.emit('mode ' + this.user.username, {
-            msg: this.UIdata.mode
+            msg: this.UIdata
         });
+    };
+    // change event on mouse-move after testing
+    HeaderComponent.prototype.slider = function (e) {
+        if (this.UIdata !== e.value) {
+            this.UIdata = e.value;
+            this._sensorService.emit('mode ' + this.user.username, {
+                msg: this.UIdata
+            });
+        }
     };
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -349,6 +363,7 @@ var HeaderComponent = /** @class */ (function () {
             msg: 'Give me data'
         });
         this._sensorService.on('Last mode', function (data) {
+            console.log(data.msg);
             _this.lastCommand.mode = data.msg;
         });
     };
@@ -533,8 +548,8 @@ var MaterialModule = /** @class */ (function () {
     }
     MaterialModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
-            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatButtonModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MatInputModule */]],
-            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatButtonModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MatInputModule */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatButtonModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MatInputModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MatSliderModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["c" /* MatRadioModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MatSlideToggleModule */]],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatButtonModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["b" /* MatInputModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MatSliderModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["c" /* MatRadioModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MatSlideToggleModule */]],
         })
     ], MaterialModule);
     return MaterialModule;
