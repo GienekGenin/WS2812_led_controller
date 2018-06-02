@@ -2,13 +2,9 @@
   <nav>
     <a routerLink="/intro" routerLinkActive="active">Intro Component</a>
   </nav>
-  <p>
-    Select mode<br>
-  </p>
-  <div class="telegaBot">Last command: {{dataFromBot.command}}</div>
   <br>
   <div>
-    <span>Data from server {{lastCommand.mode}}</span><br>
+    <span>Last command: {{UIdata}}</span><br>
   </div>
   <mat-slider thumbLabel tickInterval="1" min="0" max="255" step="1" value="255" (change)="slider($event)"></mat-slider>
   <mat-radio-group (change)="setMode($event)">

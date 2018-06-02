@@ -273,7 +273,7 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n  </div>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"255\" (change)=\"slider($event)\"></mat-slider>\r\n  <mat-radio-group (change)=\"setMode($event)\">\r\n    <mat-radio-button value=\"M1\">White</mat-radio-button>\r\n    <mat-radio-button value=\"M2\">Yellow</mat-radio-button>\r\n    <mat-radio-button value=\"M3\">Rainbow</mat-radio-button>\r\n    <mat-radio-button value=\"M4\">Rainbow blinks</mat-radio-button>\r\n    <mat-radio-button value=\"M5\">Snake</mat-radio-button>\r\n    <mat-radio-button value=\"M6\">Confetti</mat-radio-button>\r\n  </mat-radio-group>\r\n  <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n  <app-color></app-color>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <br>\r\n  <div>\r\n    <span>Last command: {{UIdata}}</span><br>\r\n  </div>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"255\" (change)=\"slider($event)\"></mat-slider>\r\n  <mat-radio-group (change)=\"setMode($event)\">\r\n    <mat-radio-button value=\"M1\">White</mat-radio-button>\r\n    <mat-radio-button value=\"M2\">Yellow</mat-radio-button>\r\n    <mat-radio-button value=\"M3\">Rainbow</mat-radio-button>\r\n    <mat-radio-button value=\"M4\">Rainbow blinks</mat-radio-button>\r\n    <mat-radio-button value=\"M5\">Snake</mat-radio-button>\r\n    <mat-radio-button value=\"M6\">Confetti</mat-radio-button>\r\n  </mat-radio-group>\r\n  <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n  <app-color></app-color>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -308,12 +308,6 @@ var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(_sensorService, user) {
         this._sensorService = _sensorService;
         this.user = user;
-        this.dataFromBot = {
-            mode: ''
-        };
-        this.lastCommand = {
-            mode: 0
-        };
     }
     HeaderComponent.prototype.setMode = function (e) {
         if (e.checked === true) {
@@ -352,19 +346,15 @@ var HeaderComponent = /** @class */ (function () {
                 console.log(_data.msg);
             });
         });
-        this._sensorService.on('Telegram_data', function (data) {
-            // console.log(dataFromBot.msg);
-            _this.dataFromBot.mode = data.msg;
-        });
         this._sensorService.on('Current mode', function (data) {
-            _this.lastCommand.mode = data.msg;
+            _this.UIdata = data.msg;
         });
         this._sensorService.emit('Last mode ' + this.user.username, {
             msg: 'Give me data'
         });
         this._sensorService.on('Last mode', function (data) {
             console.log(data.msg);
-            _this.lastCommand.mode = data.msg;
+            _this.UIdata = data.msg;
         });
     };
     HeaderComponent = __decorate([

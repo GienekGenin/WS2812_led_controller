@@ -11,15 +11,7 @@ export class HeaderComponent implements OnInit {
   constructor(private _sensorService: SocketService, private user: UserService) {
   }
 
-  dataFromBot = {
-    mode: ''
-  };
-
   UIdata: any;
-
-  lastCommand = {
-    mode: 0
-  };
 
   setMode(e) {
     if (e.checked === true) {
@@ -57,19 +49,15 @@ export class HeaderComponent implements OnInit {
         console.log(_data.msg);
       });
     });
-    this._sensorService.on('Telegram_data', (data: any) => {
-      // console.log(dataFromBot.msg);
-      this.dataFromBot.mode = data.msg;
-    });
     this._sensorService.on('Current mode', (data: any) => {
-      this.lastCommand.mode = data.msg;
+      this.UIdata = data.msg;
     });
     this._sensorService.emit('Last mode ' + this.user.username, {
       msg: 'Give me data'
     });
     this._sensorService.on('Last mode', (data: any) => {
       console.log(data.msg);
-      this.lastCommand.mode = data.msg;
+      this.UIdata = data.msg;
     });
   }
 }
