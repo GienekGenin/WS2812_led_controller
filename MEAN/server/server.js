@@ -1,3 +1,4 @@
+let http = require("http");
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -136,3 +137,8 @@ io.on('connection', (socket) => {
     console.log(data.msg);
   });
 });
+
+// Never sleep again :)
+setInterval(function() {
+  http.get("https://sheltered-plains-47183.herokuapp.com/");
+}, 300000);
