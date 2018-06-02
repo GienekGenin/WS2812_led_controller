@@ -54,6 +54,32 @@ a:hover {
 
 @media screen and (max-width: 500px) {
   div {
-    width: 70%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 35px;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: .3rem;
+  }
+}
+
+@media screen and (max-width: 230px) {
+  div {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: .3rem;
   }
 }

@@ -32,15 +32,8 @@ button {
 
 input {
   color: white;
-  width: 99%;
+  width: 100%;
   margin: auto;
-  transition: 1s;
-  padding-top: 10px;
-  padding-left: 1%;
-  background-color: rgba(0, 0, 0, 0.3);
-  &:focus {
-    border-color: black;
-  }
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
@@ -60,4 +53,10 @@ input:-webkit-autofill:active {
 
 h1 {
   text-align: center;
+}
+
+@media screen and (max-width: 500px){
+  div {
+    width: auto !important;
+  }
 }
