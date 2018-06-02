@@ -16,3 +16,5 @@ vid.addEventListener('ended', function()
   vid.pause();
   vidFade();
 });
+
+vid.playbackRate = 0.7;

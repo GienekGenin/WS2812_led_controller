@@ -44,6 +44,14 @@ a {
 a:hover{
   background:rgba(0,0,0,0.9);
 }
+
+.container-fluid{
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 15px;
+}
+
 @media screen and (max-width: 500px) {
   div{width:70%;}
 }
