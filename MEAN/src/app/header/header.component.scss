@@ -1,16 +1,232 @@
 * {
   color: white;
+  font-size: 20px;
 }
 
-input{
+input {
   color: black;
 }
 
-button{
+button {
   background-color: white;
   color: black;
 }
 
-a{
+a {
   text-decoration: none;
+  background: none;
+}
+
+.control {
+  margin-top: 50px;
+}
+
+.rainbow_1 {
+  /* Chrome, Safari, Opera */
+  -webkit-animation: rainbow_1 12s infinite;
+
+  /* Internet Explorer */
+  -ms-animation: rainbow_1 12s infinite;
+
+  /* Standar Syntax */
+  animation: rainbow_1 12s infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow_1 {
+  20% {
+    color: red;
+  }
+  40% {
+    color: yellow;
+  }
+  60% {
+    color: green;
+  }
+  80% {
+    color: blue;
+  }
+  100% {
+    color: orange;
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes rainbow_1 {
+  20% {
+    color: red;
+  }
+  40% {
+    color: yellow;
+  }
+  60% {
+    color: green;
+  }
+  80% {
+    color: blue;
+  }
+  100% {
+    color: orange;
+  }
+}
+
+/* Standar Syntax */
+@keyframes rainbow_1 {
+  5% {
+    color: red;
+  }
+  35% {
+    color: yellow;
+  }
+  65% {
+    color: green;
+  }
+  85% {
+    color: blue;
+  }
+  0% {
+    color: orange;
+  }
+}
+
+.rainbow_2 {
+  /* Chrome, Safari, Opera */
+  -webkit-animation: rainbow_2 12s infinite;
+
+  /* Internet Explorer */
+  -ms-animation: rainbow_2 12s infinite;
+
+  /* Standar Syntax */
+  animation: rainbow_2 12s infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow_2 {
+  20% {
+    color: green;
+  }
+  40% {
+    color: blue;
+  }
+  60% {
+    color: orange;
+  }
+  80% {
+    color: red;
+  }
+  100% {
+    color: yellow;
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes rainbow_2 {
+  20% {
+    color: green;
+  }
+  40% {
+    color: blue;
+  }
+  60% {
+    color: orange;
+  }
+  80% {
+    color: red;
+  }
+  100% {
+    color: yellow;
+  }
+}
+
+/* Standar Syntax */
+@keyframes rainbow_2 {
+  5% {
+    color: green;
+  }
+  35% {
+    color: blue;
+  }
+  65% {
+    color: orange;
+  }
+  85% {
+    color: red;
+  }
+  0% {
+    color: yellow;
+  }
+}
+
+.rainbow_3 {
+  /* Chrome, Safari, Opera */
+  -webkit-animation: rainbow_3 12s infinite;
+
+  /* Internet Explorer */
+  -ms-animation: rainbow_3 12s infinite;
+
+  /* Standar Syntax */
+  animation: rainbow_3 12s infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow_3 {
+  20% {
+    color: indigo;
+  }
+  40% {
+    color: red;
+  }
+  60% {
+    color: blue;
+  }
+  80% {
+    color: chartreuse;
+  }
+  100% {
+    color: orange;
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes rainbow_3 {
+  20% {
+    color: indigo;
+  }
+  40% {
+    color: red;
+  }
+  60% {
+    color: blue;
+  }
+  80% {
+    color: chartreuse;
+  }
+  100% {
+    color: orange;
+  }
+}
+
+/* Standar Syntax */
+@keyframes rainbow_3 {
+  5% {
+    color: indigo;
+  }
+  35% {
+    color: red;
+  }
+  65% {
+    color: blue;
+  }
+  85% {
+    color: chartreuse;
+  }
+  0% {
+    color: orange;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  div {
+    width: 100%;
+  }
 }

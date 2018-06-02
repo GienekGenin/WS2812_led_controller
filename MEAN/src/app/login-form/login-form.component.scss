@@ -1,5 +1,5 @@
-.form{
-  margin-top: 100px;
+.form {
+  margin-top: 170px;
 }
 
 form {
@@ -7,14 +7,6 @@ form {
   margin: auto;
   min-width: 150px;
   max-width: 400px;
-  padding-top: 15px;
-  border-radius: 15px;
-  border: 1px solid white;
-  transition: 1s;
-  &:hover{
-    border-color: #50E3C2;
-    transition: 1s;
-  }
 }
 
 mat-form-field {
@@ -30,26 +22,18 @@ button {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 11px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   transition: 1s;
-  &:hover{
-    color: black;
-    background: rgba(255,255,255,0.23);
+  &:hover {
+    background: rgba(0, 0, 255, 0.5);
     transition: 1s background;
   }
 }
 
 input {
   color: white;
-  width: 99%;
+  width: 100%;
   margin: auto;
-  transition: 1s;
-  padding-top: 10px;
-  padding-left: 1%;
-  background-color: rgba(0,0,0,0.3);
-  &:focus{
-    border-color: black;
-  }
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
@@ -67,6 +51,12 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
 }
 
-h1{
+h1 {
   text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  div {
+    width: auto !important;
+  }
 }

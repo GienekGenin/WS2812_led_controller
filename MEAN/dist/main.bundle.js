@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -147,7 +147,7 @@ var AppModule = /** @class */ (function () {
 /***/ "./src/app/color/color.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <div class=\"row\" style=\"height: 320px\">\r\n    <div class=\"col-md-3\" (mousemove)=\"sendColor(arrayColors[selectedColor])\">\r\n            <span [style.background]=\"arrayColors[selectedColor]\" [cpToggle]=\"true\" [cpDialogDisplay]=\"'inline'\"\r\n                  [cpCancelButton]=\"true\" [cpCancelButtonClass]=\"'btn btn-primary btn-xs'\"\r\n                  [(colorPicker)]=\"arrayColors[selectedColor]\"></span>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div (mousemove)=\"sendColor(arrayColors[selectedColor])\">\r\n            <span [style.background]=\"arrayColors[selectedColor]\" [cpToggle]=\"true\" [cpDialogDisplay]=\"'inline'\"\r\n                  [cpCancelButton]=\"true\" [cpCancelButtonClass]=\"'btn btn-primary btn-xs'\"\r\n                  [(colorPicker)]=\"arrayColors[selectedColor]\"></span>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -273,14 +273,14 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <p>\r\n    Select mode<br>\r\n  </p>\r\n  <div class=\"telegaBot\">Last command: {{dataFromBot.command}}</div>\r\n  <br>\r\n  <div>\r\n    <span>Data from server {{lastCommand.mode}}</span><br>\r\n  </div>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"255\" (change)=\"slider($event)\"></mat-slider>\r\n  <mat-radio-group (change)=\"setMode($event)\">\r\n    <mat-radio-button value=\"M1\">White</mat-radio-button>\r\n    <mat-radio-button value=\"M2\">Yellow</mat-radio-button>\r\n    <mat-radio-button value=\"M3\">Rainbow</mat-radio-button>\r\n    <mat-radio-button value=\"M4\">Rainbow blinks</mat-radio-button>\r\n    <mat-radio-button value=\"M5\">Snake</mat-radio-button>\r\n    <mat-radio-button value=\"M6\">Confetti</mat-radio-button>\r\n  </mat-radio-group>\r\n  <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n  <app-color></app-color>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row text-center d-flex flex-column\">\r\n    <nav>\r\n      <a routerLink=\"/intro\" routerLinkActive=\"active\">About Project</a>\r\n    </nav>\r\n    <div>\r\n      <span>Last command: {{UIdata}}</span><br>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center color control\">\r\n      <app-color></app-color>\r\n    </div>\r\n    <div class=\"col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center control\">\r\n      <div class=\"d-flex  justify-content-center align-self-center\">\r\n        <table>\r\n          <tr>\r\n            <td><span class=\"rainbow_1\">Brightness</span></td>\r\n            <td>\r\n              <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"205\"\r\n                          (change)=\"sliderB($event)\"></mat-slider>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td><span class=\"rainbow_2\">Speed</span></td>\r\n            <td class=\"alternative_1\">\r\n              <mat-slider thumbLabel tickInterval=\"1\" min=\"-30\" max=\"30\" step=\"1\" value=\"15\"\r\n                          (change)=\"sliderS($event)\"></mat-slider>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td><span class=\"rainbow_3\">Width</span></td>\r\n            <td class=\"alternative_2\">\r\n              <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"10\" step=\"1\" value=\"15\"\r\n                          (change)=\"sliderW($event)\"></mat-slider>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center align-self-center control\">\r\n      <mat-radio-group (change)=\"setMode($event)\">\r\n        <div>\r\n          <mat-radio-button value=\"M1\"><span style=\"color: white\">White</span></mat-radio-button>\r\n        </div>\r\n        <div class=\"alternative_1\">\r\n          <mat-radio-button value=\"M2\"><span style=\"color: yellow\">Yellow</span></mat-radio-button>\r\n        </div>\r\n        <div class=\"alternative_2\">\r\n          <mat-radio-button value=\"M3\"><span style=\"color: red\">R</span><span style=\"color: orange\">a</span><span\r\n            style=\"color: yellow\">i</span><span style=\"color: green\">n</span><span\r\n            style=\"color: blue\">b</span><span style=\"color: indigo\">o</span><span style=\"color: violet\">w</span>\r\n          </mat-radio-button>\r\n        </div>\r\n        <div>\r\n          <mat-radio-button value=\"M4\">\r\n            <span style=\"color: red\">R</span><span style=\"color: orange\">a</span><span\r\n            style=\"color: yellow\">i</span><span style=\"color: green\">n</span><span\r\n            style=\"color: blue\">b</span><span style=\"color: indigo\">o</span><span style=\"color: violet\">w</span>\r\n            <span> blinks</span>\r\n          </mat-radio-button>\r\n        </div>\r\n        <div class=\"alternative_1\">\r\n          <mat-radio-button value=\"M5\"><span style=\"color: green\">Snake</span></mat-radio-button>\r\n        </div>\r\n        <div class=\"alternative_2\">\r\n          <mat-radio-button value=\"M6\"><span style=\"color: indigo\">C</span><span style=\"color: red\">o</span><span\r\n            style=\"color: green\">n</span><span style=\"color: yellow\">f</span><span\r\n            style=\"color: blue\">e</span><span style=\"color: gold\">t</span><span style=\"color: fuchsia\">t</span><span\r\n            style=\"color: violet\">i</span></mat-radio-button>\r\n        </div>\r\n      </mat-radio-group>\r\n      <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ "./src/app/header/header.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = "* {\n  color: white; }\n\ninput {\n  color: black; }\n\nbutton {\n  background-color: white;\n  color: black; }\n\na {\n  text-decoration: none; }\n"
+module.exports = "* {\n  color: white;\n  font-size: 20px; }\n\ninput {\n  color: black; }\n\nbutton {\n  background-color: white;\n  color: black; }\n\na {\n  text-decoration: none;\n  background: none; }\n\n.control {\n  margin-top: 50px; }\n\n.rainbow_1 {\n  /* Chrome, Safari, Opera */\n  -webkit-animation: rainbow_1 12s infinite;\n  /* Internet Explorer */\n  /* Standar Syntax */\n  animation: rainbow_1 12s infinite; }\n\n/* Chrome, Safari, Opera */\n\n@-webkit-keyframes rainbow_1 {\n  20% {\n    color: red; }\n  40% {\n    color: yellow; }\n  60% {\n    color: green; }\n  80% {\n    color: blue; }\n  100% {\n    color: orange; } }\n\n/* Internet Explorer */\n\n/* Standar Syntax */\n\n@keyframes rainbow_1 {\n  5% {\n    color: red; }\n  35% {\n    color: yellow; }\n  65% {\n    color: green; }\n  85% {\n    color: blue; }\n  0% {\n    color: orange; } }\n\n.rainbow_2 {\n  /* Chrome, Safari, Opera */\n  -webkit-animation: rainbow_2 12s infinite;\n  /* Internet Explorer */\n  /* Standar Syntax */\n  animation: rainbow_2 12s infinite; }\n\n/* Chrome, Safari, Opera */\n\n@-webkit-keyframes rainbow_2 {\n  20% {\n    color: green; }\n  40% {\n    color: blue; }\n  60% {\n    color: orange; }\n  80% {\n    color: red; }\n  100% {\n    color: yellow; } }\n\n/* Internet Explorer */\n\n/* Standar Syntax */\n\n@keyframes rainbow_2 {\n  5% {\n    color: green; }\n  35% {\n    color: blue; }\n  65% {\n    color: orange; }\n  85% {\n    color: red; }\n  0% {\n    color: yellow; } }\n\n.rainbow_3 {\n  /* Chrome, Safari, Opera */\n  -webkit-animation: rainbow_3 12s infinite;\n  /* Internet Explorer */\n  /* Standar Syntax */\n  animation: rainbow_3 12s infinite; }\n\n/* Chrome, Safari, Opera */\n\n@-webkit-keyframes rainbow_3 {\n  20% {\n    color: indigo; }\n  40% {\n    color: red; }\n  60% {\n    color: blue; }\n  80% {\n    color: chartreuse; }\n  100% {\n    color: orange; } }\n\n/* Internet Explorer */\n\n/* Standar Syntax */\n\n@keyframes rainbow_3 {\n  5% {\n    color: indigo; }\n  35% {\n    color: red; }\n  65% {\n    color: blue; }\n  85% {\n    color: chartreuse; }\n  0% {\n    color: orange; } }\n\n@media screen and (max-width: 500px) {\n  div {\n    width: 100%; } }\n"
 
 /***/ }),
 
@@ -308,12 +308,6 @@ var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(_sensorService, user) {
         this._sensorService = _sensorService;
         this.user = user;
-        this.dataFromBot = {
-            mode: ''
-        };
-        this.lastCommand = {
-            mode: 0
-        };
     }
     HeaderComponent.prototype.setMode = function (e) {
         if (e.checked === true) {
@@ -330,9 +324,25 @@ var HeaderComponent = /** @class */ (function () {
         });
     };
     // change event on mouse-move after testing
-    HeaderComponent.prototype.slider = function (e) {
+    HeaderComponent.prototype.sliderB = function (e) {
         if (this.UIdata !== e.value) {
-            this.UIdata = e.value;
+            this.UIdata = 'B' + e.value;
+            this._sensorService.emit('mode ' + this.user.username, {
+                msg: this.UIdata
+            });
+        }
+    };
+    HeaderComponent.prototype.sliderS = function (e) {
+        if (this.UIdata !== e.value) {
+            this.UIdata = 'S' + e.value;
+            this._sensorService.emit('mode ' + this.user.username, {
+                msg: this.UIdata
+            });
+        }
+    };
+    HeaderComponent.prototype.sliderW = function (e) {
+        if (this.UIdata !== e.value) {
+            this.UIdata = 'W' + e.value;
             this._sensorService.emit('mode ' + this.user.username, {
                 msg: this.UIdata
             });
@@ -352,19 +362,15 @@ var HeaderComponent = /** @class */ (function () {
                 console.log(_data.msg);
             });
         });
-        this._sensorService.on('Telegram_data', function (data) {
-            // console.log(dataFromBot.msg);
-            _this.dataFromBot.mode = data.msg;
-        });
         this._sensorService.on('Current mode', function (data) {
-            _this.lastCommand.mode = data.msg;
+            _this.UIdata = data.msg;
         });
         this._sensorService.emit('Last mode ' + this.user.username, {
             msg: 'Give me data'
         });
         this._sensorService.on('Last mode', function (data) {
             console.log(data.msg);
-            _this.lastCommand.mode = data.msg;
+            _this.UIdata = data.msg;
         });
     };
     HeaderComponent = __decorate([
@@ -385,7 +391,7 @@ var HeaderComponent = /** @class */ (function () {
 /***/ "./src/app/intro/intro.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Header Component</a>\r\n  </nav>\r\n  <p>\r\n    About<br>\r\n  </p>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/header\" routerLinkActive=\"active\">Strip control</a>\r\n  </nav>\r\n  <p>\r\n    About<br>\r\n  </p>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -451,14 +457,14 @@ var IntroComponent = /** @class */ (function () {
 /***/ "./src/app/login-form/login-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form\">\r\n  <h1>Welcome</h1>\r\n  <form (submit)=\"loginUser($event)\" autocomplete=\"off\">\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Username\" type=\"text\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Password\" type=\"password\">\r\n    </mat-form-field>\r\n    <div class=\"input\">\r\n      <button mat-button type=\"submit\" value=\"Login\">Login</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"form container-fluid\">\r\n  <div class=\"row d-flex flex-column\">\r\n    <div class=\"d-flex justify-content-center align-self-center\">\r\n      <h1>Welcome</h1>\r\n    </div>\r\n    <div class=\"d-flex justify-content-center align-self-center\">\r\n      <form (submit)=\"loginUser($event)\" autocomplete=\"off\">\r\n        <mat-form-field>\r\n          <input matInput placeholder=\"Username\" type=\"text\">\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <input matInput placeholder=\"Password\" type=\"password\">\r\n        </mat-form-field>\r\n        <div class=\"input\">\r\n          <button mat-button type=\"submit\" value=\"Login\">Login</button>\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ "./src/app/login-form/login-form.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = ".form {\n  margin-top: 100px; }\n\nform {\n  width: 100%;\n  margin: auto;\n  min-width: 150px;\n  max-width: 400px;\n  padding-top: 15px;\n  border-radius: 15px;\n  border: 1px solid white;\n  -webkit-transition: 1s;\n  transition: 1s; }\n\nform:hover {\n    border-color: #50E3C2;\n    -webkit-transition: 1s;\n    transition: 1s; }\n\nmat-form-field {\n  width: 100%;\n  margin: auto; }\n\nbutton {\n  color: #fff;\n  border: none;\n  font-size: 1.3rem;\n  border-top-left-radius: 0;\n  border-top-right-radius: 15px;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 11px;\n  background: rgba(0, 0, 0, 0.5);\n  -webkit-transition: 1s;\n  transition: 1s; }\n\nbutton:hover {\n    color: black;\n    background: rgba(255, 255, 255, 0.23);\n    -webkit-transition: 1s background;\n    transition: 1s background; }\n\ninput {\n  color: white;\n  width: 99%;\n  margin: auto;\n  -webkit-transition: 1s;\n  transition: 1s;\n  padding-top: 10px;\n  padding-left: 1%;\n  background-color: rgba(0, 0, 0, 0.3); }\n\ninput:focus {\n    border-color: black; }\n\ninput:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {\n    -webkit-transition: background-color 5000s ease-in-out 0s;\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n\ninput:-webkit-autofill,\ninput:-webkit-autofill:hover,\ninput:-webkit-autofill:focus,\ninput:-webkit-autofill:active {\n  -webkit-transition: background-color 5000s ease-in-out 0s;\n  transition: background-color 5000s ease-in-out 0s;\n  -webkit-text-fill-color: white !important; }\n\nh1 {\n  text-align: center; }\n"
+module.exports = ".form {\n  margin-top: 170px; }\n\nform {\n  width: 100%;\n  margin: auto;\n  min-width: 150px;\n  max-width: 400px; }\n\nmat-form-field {\n  width: 100%;\n  margin: auto; }\n\nbutton {\n  color: #fff;\n  border: none;\n  font-size: 1.3rem;\n  border-top-left-radius: 0;\n  border-top-right-radius: 15px;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 11px;\n  background: rgba(0, 0, 0, 0.5);\n  -webkit-transition: 1s;\n  transition: 1s; }\n\nbutton:hover {\n    background: rgba(0, 0, 255, 0.5);\n    -webkit-transition: 1s background;\n    transition: 1s background; }\n\ninput {\n  color: white;\n  width: 100%;\n  margin: auto; }\n\ninput:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {\n    -webkit-transition: background-color 5000s ease-in-out 0s;\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n\ninput:-webkit-autofill,\ninput:-webkit-autofill:hover,\ninput:-webkit-autofill:focus,\ninput:-webkit-autofill:active {\n  -webkit-transition: background-color 5000s ease-in-out 0s;\n  transition: background-color 5000s ease-in-out 0s;\n  -webkit-text-fill-color: white !important; }\n\nh1 {\n  text-align: center; }\n\n@media screen and (max-width: 500px) {\n  div {\n    width: auto !important; } }\n"
 
 /***/ }),
 

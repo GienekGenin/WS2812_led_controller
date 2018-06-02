@@ -20,6 +20,7 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
+
 .stopfade {
   opacity: .5;
 }
@@ -31,19 +32,54 @@ h1 {
   letter-spacing: .3rem;
 }
 
-
-
 a {
   display: inline-block;
   color: #fff;
   text-decoration: none;
-  background:rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   padding: .5rem;
   transition: .6s background;
 }
-a:hover{
-  background:rgba(0,0,0,0.9);
+
+a:hover {
+  background: rgba(0, 0, 0, 0.9);
 }
+
+.container-fluid {
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 15px;
+}
+
 @media screen and (max-width: 500px) {
-  div{width:70%;}
+  div {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 35px;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: .3rem;
+  }
+}
+
+@media screen and (max-width: 230px) {
+  div {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin-top: 0;
+    letter-spacing: .3rem;
+  }
 }
