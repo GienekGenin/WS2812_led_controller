@@ -29,27 +29,27 @@ export class HeaderComponent implements OnInit {
   // change event on mouse-move after testing
   sliderB(e) {
     if (this.UIdata !== e.value) {
-      this.UIdata = e.value;
+      this.UIdata = 'B' + e.value;
       this._sensorService.emit('mode ' + this.user.username, {
-        msg: 'B' + this.UIdata
+        msg: this.UIdata
       });
     }
   }
 
   sliderS(e) {
     if (this.UIdata !== e.value) {
-      this.UIdata = e.value;
+      this.UIdata = 'S' + e.value;
       this._sensorService.emit('mode ' + this.user.username, {
-        msg: 'S' + this.UIdata
+        msg: this.UIdata
       });
     }
   }
 
   sliderW(e) {
     if (this.UIdata !== e.value) {
-      this.UIdata = e.value;
+      this.UIdata = 'W' + e.value;
       this._sensorService.emit('mode ' + this.user.username, {
-        msg: 'W' + this.UIdata
+        msg: this.UIdata
       });
     }
   }

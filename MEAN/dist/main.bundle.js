@@ -326,25 +326,25 @@ var HeaderComponent = /** @class */ (function () {
     // change event on mouse-move after testing
     HeaderComponent.prototype.sliderB = function (e) {
         if (this.UIdata !== e.value) {
-            this.UIdata = e.value;
+            this.UIdata = 'B' + e.value;
             this._sensorService.emit('mode ' + this.user.username, {
-                msg: 'B' + this.UIdata
+                msg: this.UIdata
             });
         }
     };
     HeaderComponent.prototype.sliderS = function (e) {
         if (this.UIdata !== e.value) {
-            this.UIdata = e.value;
+            this.UIdata = 'S' + e.value;
             this._sensorService.emit('mode ' + this.user.username, {
-                msg: 'S' + this.UIdata
+                msg: this.UIdata
             });
         }
     };
     HeaderComponent.prototype.sliderW = function (e) {
         if (this.UIdata !== e.value) {
-            this.UIdata = e.value;
+            this.UIdata = 'W' + e.value;
             this._sensorService.emit('mode ' + this.user.username, {
-                msg: 'W' + this.UIdata
+                msg: this.UIdata
             });
         }
     };
