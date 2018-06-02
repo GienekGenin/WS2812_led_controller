@@ -65,7 +65,7 @@ app.post('/python', function (req, res) {
     new: true
   }, function (err, doc, lastErrorObject) {
   });
-  res.json({username:req.body.username, data:req.body.data});
+  res.json({username: req.body.username, data: req.body.data});
 });
 
 const io = require('socket.io')(server);

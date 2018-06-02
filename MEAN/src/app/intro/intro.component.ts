@@ -9,6 +9,7 @@ import {SocketService} from '../socket.service';
 export class IntroComponent implements OnInit {
   constructor(private _sensorService: SocketService) {
   }
+
   ngOnInit() {
     this._sensorService.emit('Client_asking', {
       msg: 'Client to server, can u hear me server?'

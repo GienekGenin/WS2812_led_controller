@@ -1,76 +1,76 @@
 <div class="container-fluid">
   <div class="row text-center d-flex flex-column">
     <nav>
-      <a routerLink="/intro" routerLinkActive="active">Intro Component</a>
+      <a routerLink="/intro" routerLinkActive="active">About Project</a>
     </nav>
     <div>
       <span>Last command: {{UIdata}}</span><br>
     </div>
   </div>
-    <div class="row">
-      <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center color">
-        <app-color></app-color>
-      </div>
-      <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center">
-        <div class="d-flex  justify-content-center align-self-center">
-          <table>
-            <tr>
-              <td><span class="rainbow_1">Brightness</span></td>
-              <td>
-                <mat-slider thumbLabel tickInterval="1" min="0" max="255" step="1" value="205"
-                            (change)="sliderB($event)"></mat-slider>
-              </td>
-            </tr>
-            <tr>
-              <td><span class="rainbow_2">Speed</span></td>
-              <td class="alternative_1">
-                <mat-slider thumbLabel tickInterval="1" min="-30" max="30" step="1" value="15"
-                            (change)="sliderS($event)"></mat-slider>
-              </td>
-            </tr>
-            <tr>
-              <td><span class="rainbow_3">Width</span></td>
-              <td class="alternative_2">
-                <mat-slider thumbLabel tickInterval="1" min="0" max="10" step="1" value="15"
-                            (change)="sliderW($event)"></mat-slider>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center align-self-center" style="text-align: left">
-        <mat-radio-group (change)="setMode($event)">
-          <div>
-            <mat-radio-button value="M1"><span style="color: white">White</span></mat-radio-button>
-          </div>
-          <div class="alternative_1">
-            <mat-radio-button value="M2"><span style="color: yellow">Yellow</span></mat-radio-button>
-          </div>
-          <div class="alternative_2">
-            <mat-radio-button value="M3"><span style="color: red">R</span><span style="color: orange">a</span><span
-              style="color: yellow">i</span><span style="color: green">n</span><span
-              style="color: blue">b</span><span style="color: indigo">o</span><span style="color: violet">w</span>
-            </mat-radio-button>
-          </div>
-          <div>
-            <mat-radio-button value="M4">
-              <span style="color: red">R</span><span style="color: orange">a</span><span
-              style="color: yellow">i</span><span style="color: green">n</span><span
-              style="color: blue">b</span><span style="color: indigo">o</span><span style="color: violet">w</span>
-              <span> blinks</span>
-            </mat-radio-button>
-          </div>
-          <div class="alternative_1">
-            <mat-radio-button value="M5"><span style="color: green">Snake</span></mat-radio-button>
-          </div>
-          <div class="alternative_2">
-            <mat-radio-button value="M6"><span style="color: indigo">C</span><span style="color: red">o</span><span
-              style="color: green">n</span><span style="color: yellow">f</span><span
-              style="color: blue">e</span><span style="color: gold">t</span><span style="color: fuchsia">t</span><span
-              style="color: violet">i</span></mat-radio-button>
-          </div>
-        </mat-radio-group>
-        <mat-slide-toggle (change)="setMode($event)"></mat-slide-toggle>
+  <div class="row">
+    <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center color control">
+      <app-color></app-color>
+    </div>
+    <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center control">
+      <div class="d-flex  justify-content-center align-self-center">
+        <table>
+          <tr>
+            <td><span class="rainbow_1">Brightness</span></td>
+            <td>
+              <mat-slider thumbLabel tickInterval="1" min="0" max="255" step="1" value="205"
+                          (change)="sliderB($event)"></mat-slider>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="rainbow_2">Speed</span></td>
+            <td class="alternative_1">
+              <mat-slider thumbLabel tickInterval="1" min="-30" max="30" step="1" value="15"
+                          (change)="sliderS($event)"></mat-slider>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="rainbow_3">Width</span></td>
+            <td class="alternative_2">
+              <mat-slider thumbLabel tickInterval="1" min="0" max="10" step="1" value="15"
+                          (change)="sliderW($event)"></mat-slider>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
+    <div class="col-md-4 col-xs-12 col-sm-12 col-lg-4 d-flex justify-content-center align-self-center control">
+      <mat-radio-group (change)="setMode($event)">
+        <div>
+          <mat-radio-button value="M1"><span style="color: white">White</span></mat-radio-button>
+        </div>
+        <div class="alternative_1">
+          <mat-radio-button value="M2"><span style="color: yellow">Yellow</span></mat-radio-button>
+        </div>
+        <div class="alternative_2">
+          <mat-radio-button value="M3"><span style="color: red">R</span><span style="color: orange">a</span><span
+            style="color: yellow">i</span><span style="color: green">n</span><span
+            style="color: blue">b</span><span style="color: indigo">o</span><span style="color: violet">w</span>
+          </mat-radio-button>
+        </div>
+        <div>
+          <mat-radio-button value="M4">
+            <span style="color: red">R</span><span style="color: orange">a</span><span
+            style="color: yellow">i</span><span style="color: green">n</span><span
+            style="color: blue">b</span><span style="color: indigo">o</span><span style="color: violet">w</span>
+            <span> blinks</span>
+          </mat-radio-button>
+        </div>
+        <div class="alternative_1">
+          <mat-radio-button value="M5"><span style="color: green">Snake</span></mat-radio-button>
+        </div>
+        <div class="alternative_2">
+          <mat-radio-button value="M6"><span style="color: indigo">C</span><span style="color: red">o</span><span
+            style="color: green">n</span><span style="color: yellow">f</span><span
+            style="color: blue">e</span><span style="color: gold">t</span><span style="color: fuchsia">t</span><span
+            style="color: violet">i</span></mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <mat-slide-toggle (change)="setMode($event)"></mat-slide-toggle>
+    </div>
+  </div>
 </div>
