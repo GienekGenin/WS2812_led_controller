@@ -273,7 +273,7 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <br>\r\n  <div>\r\n    <span>Last command: {{UIdata}}</span><br>\r\n  </div>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"255\" (change)=\"slider($event)\"></mat-slider>\r\n  <mat-radio-group (change)=\"setMode($event)\">\r\n    <mat-radio-button value=\"M1\">White</mat-radio-button>\r\n    <mat-radio-button value=\"M2\">Yellow</mat-radio-button>\r\n    <mat-radio-button value=\"M3\">Rainbow</mat-radio-button>\r\n    <mat-radio-button value=\"M4\">Rainbow blinks</mat-radio-button>\r\n    <mat-radio-button value=\"M5\">Snake</mat-radio-button>\r\n    <mat-radio-button value=\"M6\">Confetti</mat-radio-button>\r\n  </mat-radio-group>\r\n  <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n  <app-color></app-color>\r\n</div>\r\n"
+module.exports = "<div style=\"text-align:center\">\r\n  <nav>\r\n    <a routerLink=\"/intro\" routerLinkActive=\"active\">Intro Component</a>\r\n  </nav>\r\n  <br>\r\n  <div>\r\n    <span>Last command: {{UIdata}}</span><br>\r\n  </div>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"255\" step=\"1\" value=\"205\" (change)=\"sliderB($event)\"></mat-slider>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"-30\" max=\"30\" step=\"1\" value=\"15\" (change)=\"sliderS($event)\"></mat-slider>\r\n  <mat-slider thumbLabel tickInterval=\"1\" min=\"0\" max=\"10\" step=\"1\" value=\"15\" (change)=\"sliderW($event)\"></mat-slider>\r\n  <mat-radio-group (change)=\"setMode($event)\">\r\n    <mat-radio-button value=\"M1\">White</mat-radio-button>\r\n    <mat-radio-button value=\"M2\">Yellow</mat-radio-button>\r\n    <mat-radio-button value=\"M3\">Rainbow</mat-radio-button>\r\n    <mat-radio-button value=\"M4\">Rainbow blinks</mat-radio-button>\r\n    <mat-radio-button value=\"M5\">Snake</mat-radio-button>\r\n    <mat-radio-button value=\"M6\">Confetti</mat-radio-button>\r\n  </mat-radio-group>\r\n  <mat-slide-toggle (change)=\"setMode($event)\"></mat-slide-toggle>\r\n  <app-color></app-color>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -324,11 +324,27 @@ var HeaderComponent = /** @class */ (function () {
         });
     };
     // change event on mouse-move after testing
-    HeaderComponent.prototype.slider = function (e) {
+    HeaderComponent.prototype.sliderB = function (e) {
         if (this.UIdata !== e.value) {
             this.UIdata = e.value;
             this._sensorService.emit('mode ' + this.user.username, {
-                msg: this.UIdata
+                msg: 'B' + this.UIdata
+            });
+        }
+    };
+    HeaderComponent.prototype.sliderS = function (e) {
+        if (this.UIdata !== e.value) {
+            this.UIdata = e.value;
+            this._sensorService.emit('mode ' + this.user.username, {
+                msg: 'S' + this.UIdata
+            });
+        }
+    };
+    HeaderComponent.prototype.sliderW = function (e) {
+        if (this.UIdata !== e.value) {
+            this.UIdata = e.value;
+            this._sensorService.emit('mode ' + this.user.username, {
+                msg: 'W' + this.UIdata
             });
         }
     };
