@@ -44,6 +44,7 @@ void getData() {
   http.GET();
   String serverResponse = http.getString();
   if (serverResponse != lastServerResponse) {
+    digitalWrite(flagPin, HIGH);
     lastServerResponse = serverResponse;
     Serial.print("Raw response from server: ");
     Serial.println(serverResponse);
@@ -55,7 +56,6 @@ void getData() {
     }
     Serial.print("Data to arduino: ");
     Serial.println(data);
-    digitalWrite(flagPin, HIGH);
     NodeSerial.println(data);
     digitalWrite(flagPin, LOW);
   }

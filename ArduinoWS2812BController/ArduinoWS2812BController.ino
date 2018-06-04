@@ -2,7 +2,7 @@
 #include <FastLED.h>
 #include <SoftwareSerial.h>
 
-#define flagPin 4
+#define flagPin A1
 String previousCommand;
 /*--- Variables declaration - START ---*/
 // PINs declaration
@@ -30,26 +30,23 @@ SoftwareSerial ArduinoSerial(3, 2); //RX, TX
 /*--- Variables declaration - END ---*/
 
 void setup() {
-	// Serial_
 	Serial.begin(115200);
 	Serial.println("R: I'm ready!");
   ArduinoSerial.begin(115200);
-	pinMode(flagPin, INPUT);
-	// Encoder
+	pinMode(flagPin, INPUT_PULLUP);
 	pinMode(D13LED, OUTPUT);
 	// LED strip
 	FastLED.addLeds<WS2812B, DIN, GRB>(leds, NUM_LEDS);
 	FastLED.setBrightness(brightness);
 }
 
-String mode;
 void loop() {
+  Serial.print(digitalRead(flagPin));
   String message;
   if (ArduinoSerial.available()>0) {
     String message = ArduinoSerial.readString();
-    Serial.println(message);
     message.trim();
-    Serial.println(message);
+    Serial.print(digitalRead(flagPin));
     applyChangesFromServer(message);
   }
 	update();
@@ -57,13 +54,21 @@ void loop() {
 
 /*--- IR Reciver - START ---*/
 void applyChangesFromServer(String command) {
-  Serial.println("In mode");
   if(command == "M1"){
     Serial.println("M1");
    solidColor(40,150,150); 
-  } else if (command == "M2"){
+  }
+  if (command == "M2"){
     Serial.println("M2");
     solidColor(40,50,150); 
+  }
+    if (command == "M3"){
+    Serial.println("M3");
+    solidColor(190,50,50); 
+  }
+    if (command == "M4"){
+    Serial.println("M4");
+   rainbowCycle();
   }
 }
 
@@ -204,6 +209,7 @@ void update() {
 //	if (micros() - lastMicrosUpdate >= 1000000 / 24 && flagPin <= 0) {
 //if (micros() - lastMicrosUpdate >= 1000000 / 24) {
   if (micros() - lastMicrosUpdate >= 1000000 / 24 && flagPin == 0) {
+    //Serial.println("Update");
 		lastMicrosUpdate = micros();
 		FastLED.show();
 	}
