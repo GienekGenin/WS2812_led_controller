@@ -1,7 +1,9 @@
 /* NodeMCU Scetch for WS2812B LED strip controller */
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <Wire.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial NodeSerial(D5, D6);  //RX, TX
 
 // Wi-Fi variables
 HTTPClient http;  //Declare an object of class HTTPClient
@@ -15,11 +17,13 @@ bool permissionToListenServer = HIGH;
 // Server's variables
 String lastServerResponse;
 
-#define flagPin 12
+#define flagPin D7
 
 void setup() {
+  pinMode(D5, INPUT);
+  pinMode(D6, OUTPUT);
   Serial.begin(115200);
-  //Wire.begin(4, 5);
+  NodeSerial.begin(115200);
   WiFi.begin(ssid, password);
   pinMode(flagPin, OUTPUT);
   while (WiFi.status() != WL_CONNECTED)
@@ -51,6 +55,9 @@ void getData() {
     }
     Serial.print("Data to arduino: ");
     Serial.println(data);
+    digitalWrite(flagPin, HIGH);
+    NodeSerial.println(data);
+    digitalWrite(flagPin, LOW);
   }
   http.end();
   }
