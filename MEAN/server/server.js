@@ -139,6 +139,6 @@ io.on('connection', (socket) => {
 });
 
 // Never sleep again :)
-setInterval(function() {
-  http.get("http://sheltered-plains-47183.herokuapp.com/");
-}, 300000);
+// setInterval(function() {
+//   http.get("http://sheltered-plains-47183.herokuapp.com/");
+// }, 300000);
